@@ -1,0 +1,176 @@
+// expects <input class="searchbox" name="searchbox" size="60" type="text" />
+var urls = [];
+var keywords = undefined;
+var maxSearchResults = 20;
+var keywordsLoading = false;
+
+function setMaxSearchResults(r) {
+  maxSearchResults = r;
+}
+
+  // find similar words (assumes keywords is already loaded)
+  function searchSimilar(val) {
+    var results = [];
+    for (key in keywords) {
+      var score = 0;
+      var chk = 0, chv = 0;
+      while (chk<key.length && chv<val.length) {
+        if (key[chk]==val[chv]) {
+          chk++;
+          chv++;
+        } else if (key[chk+1]==val[chv+1]) {
+          // one character wrong
+          chk++;
+          chv++;
+          score+=1;
+        } else if (key[chk+1]==val[chv]) {
+          // one character missed
+          chk++;
+          score+=2;
+        } else if (key[chk]==val[chv+1]) {
+          // one character missed
+          chv++;
+          score+=2;
+        } else {
+          // not good
+          score+=1000;
+          break;
+        }
+      }
+      // also score by string length
+      score += Math.abs(key.length - val.length)*3;
+      if (score<10) {
+        console.log(key, score);
+        results.push({key:key, score:score});
+      }
+    }
+    results.sort(function(a,b) { return a.score-b.score; });
+    console.log(JSON.stringify(results, null, 2));
+    var html = "";
+    if (results.length) {
+      html = 'No search results for <b>'+val+'</b>, did you mean:<br/><div style="margin-left:16px;">';
+      for (var i in results) {
+        var result = results[i];
+        html += '<a href="/Search?kw='+result.key+'">'+result.key+'</a><br/>'
+      }
+      html += '</div>';
+    }
+    return html;
+  }
+
+  function doSearch(searchbox) {
+    if (keywords===undefined) {
+      loadKeywords(searchbox);
+      return;
+    }
+    $(".searchbox").val(searchbox.val()); // set all searchboxes on page to the same
+    var val = searchbox.val().toLowerCase().trim();
+    var html = "";
+    var results = 0;
+    var resultInfo = [];
+    urls = [];
+    if (val!="") {
+      // find keywords, merge duplicate sets of links
+      for (key in keywords) {
+        var idx = key.indexOf(val);
+        if (idx>=0) {
+          // bigger score depending on how much was matched
+          var score = 100 / (1+key.length-val.length);
+          // double the score if we've matched at the start
+          if (idx==0) score*=2;
+
+          if (results>1 && results>maxSearchResults) continue;
+
+          var keywordName = key.substr(0,idx)+"<b>"+key.substr(idx,val.length)+"</b>"+key.substr(idx+val.length);
+          var pages = keywords[key];
+          var pageJSON = JSON.stringify(pages);
+          for (var i in resultInfo) {
+            if (resultInfo[i].pageJSON == pageJSON) {
+              resultInfo[i].names += " / "+keywordName;
+              resultInfo[i].score += score; // increase score if multiple hits for the same thing
+              pages = undefined;
+              break;
+            }
+          }
+
+          if (pages) {
+            results += pages.length+1;
+            resultInfo.push({names:keywordName, pages:pages, pageJSON: pageJSON, score: score});
+          }
+        }
+      }
+      // sort by score
+      resultInfo.sort(function(a,b) { return b.score-a.score; });
+      // finally HTMLify
+      for (var i in resultInfo) {
+        var res = resultInfo[i];
+        html += res.names+"<br/>\n";
+
+        html += '<div style="margin-left:16px;">\n';
+        pages = res.pages;
+        var shtml = "";
+        for (pi in pages) {
+          var link = pages[pi]["file"];
+          // fix 'local' links if we're searching from a folder
+          if (link.indexOf("://")<0 && link[0]!="/") link = "/"+link;
+          // add html
+          var h = '<a href="'+link+'">'+pages[pi]["title"]+'</a><br/>\n';
+          if (link.toLowerCase()=="/"+val)
+            html += '<b>'+h+'</b>';
+          else
+            shtml += h;
+          urls.push(pages[pi]["file"]);
+        }
+        html += shtml+'</div>\n';
+      }
+    }
+    if (results>maxSearchResults) html+='<i>Too many results... <a href="/Search?kw='+encodeURIComponent(val)+'">see more</a></i>\n';
+
+    if (val!="") {
+      if (html=="") html = searchSimilar(val);
+      if (html=="") {
+        var link = "http://www.google.co.uk/#q="+encodeURIComponent("site:espruino.com "+val);
+        html='(No Results)<br/><a href="'+link+'">Try Google instead</a> or <a href="http://forum.espruino.com">ask in the forums</a>';
+      }
+    }
+
+    if ($("#searchresults").length == 0) {
+      if (html!="") {
+        // no area. we need a popup
+        if ($("#searchpopup").length == 0) $("#header").append('<div id="searchpopup"></div>');
+        var box = $(".searchbox");
+        var pos = {top:box.offset().top+box.outerHeight(),left:box.offset().left};
+
+        html = '<div class="panel panel-default"><div class="panel-body">'+html+'</div></div>';
+
+        $("#searchpopup").html(html).offset(pos);//.show().blur(function() { $("#searchpopup").hide(); });
+      } else {
+        $("#searchpopup").remove();
+      }
+
+    } else {
+      // we have an area. awesomes.
+      $("#searchresults").html(html);
+    }
+  }
+
+   function loadKeywords(searchbox) {
+     if (keywordsLoading) return;
+     keywordsLoading = true;
+     $.get("/js/keywords.js", function(data) {
+       var i = data.indexOf("=");
+       keywords = JSON.parse(data.substr(i+1,data.length-(i+2)));
+       doSearch(searchbox);
+     }, "text");
+   }
+
+$(function() {
+   $(".searchbox").on('input', function(){doSearch($(this));}).keypress(function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      if (urls.length == 1)
+        window.location = urls[0];
+    }
+   });
+});
+var resultNames = [];

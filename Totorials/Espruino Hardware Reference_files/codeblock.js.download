@@ -1,0 +1,58 @@
+$(function() {
+  var codeBlocks = [];
+  var htmlBlockIndex = 0;
+
+  $('pre code').each(function() {
+    codeBlocks.push($(this));
+    var txt = $(this).text();
+    var cls = $(this).attr("class");
+    txt.split("\n").forEach(function (line) {
+      if (line.length>0 && (line[0]==">" || line[0]=="="))
+        cls = "IGNORE";
+    });
+    if (cls==undefined || cls=="lang-JavaScript" || cls=="sh_javascript")
+      $(this).append('<a href="http://www.espruino.com/webide?code='+encodeURIComponent(txt)+'" class="codelink" title="Send to Web IDE"></a>');
+    if (cls=="lang-HTML_demo_link") {
+      var url = 'https://www.espruino.com/try.php?page='+window.location.pathname.substr(1)+'&n='+htmlBlockIndex;
+      var a = $('<a href="'+url+'" class="trylink" title="Try webpage" target="_blank"></a>');
+      a.click(function(e) {
+        e.preventDefault();
+        window.open(e.target.href,"tryme","width=480,height=600");
+      });
+      $(this).append(a);
+      htmlBlockIndex++;
+    }
+  });
+
+  $('code').addClass('prettyprint');
+  prettyPrint();
+
+  if (window.location.hash) {
+    var hash = window.location.hash;
+    if (hash.indexOf("line=")>=0) {
+      var lineNumbers = hash.substr(hash.indexOf("line=")+5).split(",");
+
+      lineNumbers.forEach(function (lineNumber) {
+        lineNumber = parseInt(lineNumber);
+        $("code").each(function() {
+          var code = $(this);
+          var yPos = undefined;
+          var endedWithNewLine = false;
+          var linesInBlock = 0;
+          code.children().each(function (i,n) {
+            if (yPos==undefined && lineNumber==1)
+              yPos = $(n).offset().top - code.offset().top;
+            var lines = n.innerText.split("\n").length-1;
+            lineNumber -= lines;
+            linesInBlock += lines;
+          });
+          lineNumber--;
+
+          if (yPos!==undefined) {
+            var highlight = $('<div style="width:100%;background-color:yellow;opacity: 0.4;position:absolute;top:'+yPos+'px;">&nbsp;</div>').appendTo(code)[0].scrollIntoView();
+          }
+        });
+      });
+    }
+  }
+});

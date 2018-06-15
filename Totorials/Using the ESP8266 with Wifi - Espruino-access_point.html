@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0042)https://www.espruino.com/ESP8266_WifiUsage -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=650, initial-scale=1">
+<meta name="Description" content="JavaScript on a Microcontroller">
+<meta name="Keywords" content="Espruino, Pico, Espruino Pico, Espurino, Espruino WiFi, Puck.js, Puckjs, Puck-js, JavaScript, JS, ARM, Arduino, MCU, STM32, NRF, NRF52, Microcontroller, Embedded">
+
+<meta name="Distribution" content="Global">
+<meta name="Robots" content="index,follow">
+<title>Using the ESP8266 with Wifi - Espruino</title>
+
+<script type="text/javascript" async="" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/ga.js.download"></script><script type="text/javascript" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/jquery-1.11.1.min.js.download"></script>
+<link href="./Using the ESP8266 with Wifi - Espruino-access_point_files/bootstrap.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="./Using the ESP8266 with Wifi - Espruino-access_point_files/carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="./Using the ESP8266 with Wifi - Espruino-access_point_files/sitewide.css" type="text/css">
+
+<link rel="stylesheet" href="./Using the ESP8266 with Wifi - Espruino-access_point_files/prettify.css" type="text/css">
+<script src="./Using the ESP8266 with Wifi - Espruino-access_point_files/prettify.js.download"></script>
+<script type="text/javascript" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/search.js.download"></script>
+<script type="text/javascript" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/codeblock.js.download"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.espruino.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "http://www.espruino.com/Search?kw={search_term}",
+    "query-input": "required name=search_term"
+  }
+}
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35839191-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <div class="navbar-wrapper" id="header"> <!-- id=header for search -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://www.espruino.com/">Espruino</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="https://www.espruino.com/ESP8266_WifiUsage#" class="dropdown-toggle" data-toggle="dropdown">Get Espruino<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://www.espruino.com/Order">Buy Espruino</a></li>
+                <li><a href="https://www.espruino.com/Download">Download firmware</a></li>
+              </ul>
+            </li>
+            <li><a href="https://www.espruino.com/Donate">Donate</a></li>
+            <li class="dropdown">
+              <a href="https://www.espruino.com/ESP8266_WifiUsage#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://www.espruino.com/Quick+Start">Quick Start</a></li>
+                <li class="divider"></li>
+                <li><a href="https://www.espruino.com/Reference#software">API Reference</a></li>
+                <li><a href="https://www.espruino.com/Tutorials">Tutorials &amp; Examples</a></li>
+                <li><a href="https://www.espruino.com/Modules">Modules</a></li>
+                <li class="divider"></li>
+                <li><a href="https://www.espruino.com/EspruinoBoard">Original Espruino</a></li>
+                <li><a href="https://www.espruino.com/Pico">Espruino Pico</a></li>
+                <li><a href="https://www.espruino.com/WiFi">Espruino WiFi</a></li>
+                <li><a href="https://www.espruino.com/Puck.js">Puck.js</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="https://www.espruino.com/ESP8266_WifiUsage#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://forum.espruino.com/">Forums</a></li>
+                <li class="divider"></li>
+                <li><a href="https://www.espruino.com/FAQ">FAQ</a></li>
+                <li><a href="https://www.espruino.com/Troubleshooting">Troubleshooting</a></li>
+                <li class="divider"></li>
+                <li><a href="https://www.espruino.com/Contact+Us">Contact Us</a></li>
+                <li><a href="https://www.espruino.com/Press">Press Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <span class="hidden-sm hidden-xs">
+              <a href="http://www.facebook.com/sharer.php?u=http://www.espruino.com&amp;t=Espruino+JavaScript+for+Microcontrollers" target="_blank" title="Share on Facebook"><img height="20" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/socialtiny_facebook.png" width="20" class="socialtiny"></a>
+              <a href="https://plus.google.com/share?url=http://www.espruino.com" target="_blank" title="Share on Google+"><img height="20" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/socialtiny_google.png" width="20" class="socialtiny"></a>
+              <a href="http://twitter.com/Espruino" target="_blank" title="Follow us on Twitter"><img height="20" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/socialtiny_twitter.png" width="24" class="socialtiny"></a>
+              <a href="http://youtube.com/subscription_center?add_user=espruino" target="_blank" title="YouTube"><img alt="YouTube" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/youtube_tinyw.png"></a>
+            </span>
+
+            <input type="text" class="form-control searchbox" name="searchbox" placeholder="Search..." autocomplete="off" size="15">
+          </form>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+  </div><!-- /.navbar-wrapper -->
+
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div id="mainscroller">
+    <div class="container">
+      <div id="maincontent"><div style="min-height:700px;"><h1 id="using-the-esp8266-with-wifi">Using the ESP8266 with Wifi</h1>
+<p>This tutorial provides an intro to using Espruino running on the ESP8266 over Wifi instead of
+hooked up via the serial port.</p>
+<h2 id="wifi-configuration">Wifi Configuration</h2>
+<p>The first step is to configure Wifi to maintain a persistent connection. You need Wifi to be
+stable even when you reset the ESP8266, when your code doesn't run, when you upload bad code, etc.
+The way you do this is to connect to your access point and then save the wifi config. After that,
+do not try to connect in your code: it will happen automatically.</p>
+<p>There are 3 steps to getting started. As you follow along, you may want to consult the
+<a href="http://www.espruino.com/Reference#Wifi">Wifi library reference</a>.</p>
+<h3 id="1-connect-to-your-access-point">1. Connect to your access point</h3>
+<pre><code class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> wifi </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">"Wifi"</span><span class="pun">);</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">"my-ssid"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">password</span><span class="pun">:</span><span class="str">"my-pwd"</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"connected? err="</span><span class="pun">,</span><span class="pln"> err</span><span class="pun">,</span><span class="pln"> </span><span class="str">"info="</span><span class="pun">,</span><span class="pln"> wifi</span><span class="pun">.</span><span class="pln">getIP</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">stopAP</span><span class="pun">();</span><a href="http://www.espruino.com/webide?code=var%20wifi%20%3D%20require(%22Wifi%22)%3B%0Awifi.connect(%22my-ssid%22%2C%20%7Bpassword%3A%22my-pwd%22%7D%2C%20function(err)%7B%0A%20%20console.log(%22connected%3F%20err%3D%22%2C%20err%2C%20%22info%3D%22%2C%20wifi.getIP())%3B%0A%7D)%3B%0Awifi.stopAP()%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p>You should see a message saying "connected? err= null" message after a few seconds and your
+ESP8266 will be on the network! If an error is shown, adjust your connect call appropriately.</p>
+<h3 id="1-alt-create-an-access-point">1-alt. Create an access point</h3>
+<p>Using the ESP8266 is not recommended in general because its functionality is very limited and
+you'll have to reconnect to the AP whenever something bad happens, but it's a handy mode if
+you're out on the road and don't have an AP you can use to get internet access. To get that
+going use:</p>
+<pre><code class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> wifi </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">"Wifi"</span><span class="pun">);</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">disconnect</span><span class="pun">()</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">startAP</span><span class="pun">(</span><span class="str">"my-ssid"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">password</span><span class="pun">:</span><span class="str">"my-password"</span><span class="pun">,</span><span class="pln">authMode</span><span class="pun">:</span><span class="str">"wpa_wpa2"</span><span class="pun">});</span><a href="http://www.espruino.com/webide?code=var%20wifi%20%3D%20require(%22Wifi%22)%3B%0Awifi.disconnect()%0Awifi.startAP(%22my-ssid%22%2C%20%7Bpassword%3A%22my-password%22%2CauthMode%3A%22wpa_wpa2%22%7D)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p>You should see the access point appear on your phone or laptop if you do a wifi scan.
+You can verify the ESP8266's IP address using <code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">getAPIP</span><span class="pun">()</span></code>, it should be 192.168.4.1.</p>
+<h3 id="2-connect-via-the-web-ide">2. Connect via the web IDE</h3>
+<p>Start the Espruino Web IDE, open the settings (gear icon), and on the communications tab set the
+IP address and port of your ESP8266, e.g. something like <code class="prettyprint prettyprinted" style=""><span class="lit">192.168</span><span class="pun">.</span><span class="lit">1.34</span><span class="pun">:</span><span class="lit">23</span></code> or, if you're using
+the AP mode it would be <code class="prettyprint prettyprinted" style=""><span class="lit">192.168</span><span class="pun">.</span><span class="lit">4.1</span><span class="pun">:</span><span class="lit">23</span></code>. Note the <code class="prettyprint prettyprinted" style=""><span class="pun">:</span><span class="lit">23</span></code>, which is the port on which
+Espruino is listening.</p>
+<p>Close the settings and hit the connect button (yellow disconnected plug icon) and choose
+your TCP entry. You should now be connected to your ESP8266's interpreter. You can type
+<code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">getStatus</span><span class="pun">()</span></code> to confirm. To get a clea interpreter environment, type <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code>.</p>
+<p>If you do not want to use the IDE, you can also connect using a simple terminal program.
+Just use the ESP8266's hostname or IP address and port 23.</p>
+<h3 id="3-name-and-persist">3. Name and persist</h3>
+<p>You probably want to assign a DNS name to your ESP8266 so you don't need to chase the IP address,
+the ticket for that is:</p>
+<pre><code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">setHostname</span><span class="pun">(</span><span class="str">"my-esp"</span><span class="pun">)</span><a href="http://www.espruino.com/webide?code=wifi.setHostname(%22my-esp%22)%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p>Finally, you need to save the settings so they persist across hard-resets and power cycles:</p>
+<pre><code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span><a href="http://www.espruino.com/webide?code=wifi.save()%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p>At this point you can power cycle your ESP8266 and then reconnect from the IDE (you may have to
+manually disconnect first, the IDE is slow at detecting that the connection got cut).
+Note that the saving of the wifi settings means that your program code should not configure
+the wifi unless you want special effects that cannot be achieved simply by saving your current
+wifi config.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="recovering-from-saved-js-code">Recovering from saved JS code</h3>
+<p>Sometimes you may have commands stored in the regular JS save area that mess with wifi at
+start-up, or some other weird stuff is happening. To recover, try this: <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code> to clear
+the interpreter. Then <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> to clear the JS save area. Then use the wifi commands to
+connect to you access point and otherwise get the wifi into the state you want. Then
+use <code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span></code> to save the wifi settings and power cycle or reboot your esp8266
+(<code class="prettyprint prettyprinted" style=""><span class="kwd">require</span><span class="pun">(</span><span class="str">"ESP8266"</span><span class="pun">).</span><span class="pln">reboot</span><span class="pun">()</span></code> will work too). Now ensure that it comes back up the way
+you want. Then load your application JS code (without any commands that mess with wifi
+in it) and use <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> to commit that to flash. Now reboot again and the esp8266 should connect
+to wifi and run your code.</p>
+<h3 id="recovering-from-an-endless-reset-loop">Recovering from an endless reset loop</h3>
+<p>This is not all that related to wifi, but... Sometimes you may have saved JS code that causes
+Espruino to crash or otherwise mess things up such that you can't gain control over the
+interpreter. The solution is to flash over the JS save area: flash blank.bin to 0x7a000
+(or consult the current flash map and pick the last 4KB sector of the save area).</p>
+<p>If you need to wipe the wifi save area flash blank.bin to 0x7b000.</p>
+<h3 id="how-to-wait-for-a-connection-before-starting-services">How to wait for a connection before starting services</h3>
+<p>You can actually start any listening sockets at any time, even before a wifi connetion is
+established. The listening socket is on the wifi interface devices and doesn't care whether
+wifi is connected or not, whether the IP address changes over time, etc.</p>
+<p>If you need to make outbound calls, the recommended approach is to retry until successful
+instead of waiting for a connection because that is a more robust approach which can deal
+with errors other than just the loss of wifi association.</p>
+</div><p style="text-align:right;font-size:75%;">This page is auto-generated from <a href="https://github.com/espruino/EspruinoDocs/blob/master/tutorials/ESP8266_WifiUsage.md">GitHub</a>. If you see any mistakes or have suggestions, please <a href="https://github.com/espruino/EspruinoDocs/issues/new?title=tutorials/ESP8266_WifiUsage.md">let us know</a>.</p></div>
+      <div class="row">
+        <div id="sidebar" class="col-md-3 hidden-sm hidden-xs"></div>
+        <div id="maincolumn" class="col-md-9"></div>
+      </div>
+
+      <hr>
+      <!-- FOOTER -->
+      <footer>
+        <p>
+  			© 2017 <strong>Pur3 Ltd</strong>
+  			(<a href="https://www.espruino.com/ESP8266_WifiUsage?print">Printable Version</a>)
+        <a href="https://www.espruino.com/edit.php?page=ESP8266_WifiUsage" class="edit" style="float:right;">π</a>
+  			</p>
+      </footer>
+
+    </div><!-- /.container -->
+  </div><!-- /#mainscroller -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script>
+    // if there's a contents element, add it to the page
+    var contents = document.getElementById("contents");
+    if (contents) {
+      document.getElementById("sidebar").appendChild(contents);
+      document.getElementById("maincolumn").appendChild(document.getElementById("maincontent"));
+    }
+  </script>
+  <script src="./Using the ESP8266 with Wifi - Espruino-access_point_files/jquery-1.11.1.min.js.download"></script>
+  <script src="./Using the ESP8266 with Wifi - Espruino-access_point_files/bootstrap.min.js.download"></script>
+  <script type="text/javascript" src="./Using the ESP8266 with Wifi - Espruino-access_point_files/search.js.download"></script>
+
+
+</body></html>

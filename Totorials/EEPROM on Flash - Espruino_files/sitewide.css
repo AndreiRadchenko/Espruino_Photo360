@@ -1,0 +1,50 @@
+h1 { font-size: 30px; font-weight: bold; }
+h2 { font-size: 24px; font-weight: bold; }
+h3 { font-size: 20px; font-weight: bold; }
+h4 { font-size: 18px; font-weight: bold; }
+
+table {
+  border-collapse:collapse;
+  margin-left: 24px;
+}
+table,th,td {
+  border: 1px sol**id #CCC;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+tbody>tr:nth-child(odd) {
+  background-color: #EEE;
+}
+thead>tr {
+  background-color: #DDD;
+}
+
+.invisible tbody>tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.invisible thead>tr {
+  background-color: transparent;
+}
+
+table.invisible {
+  border: 0px;
+  background-color: transparent;
+}
+
+.invisible th,td{
+  border: 0px;
+  background-color: transparent;
+}
+
+code .codelink {
+	float:right;
+  width:16px;height:16px;
+  background-image: url(/favicon.ico)
+}
+
+code .trylink {
+	float:right;
+  width:63px;height:23px;
+  background-image: url(/images/tryme.png)
+}

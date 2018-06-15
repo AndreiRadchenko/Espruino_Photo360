@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0033)http://www.espruino.com/Tutorials -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=650, initial-scale=1">
+<meta name="Description" content="JavaScript on a Microcontroller">
+<meta name="Keywords" content="Espruino, Pico, Espruino Pico, Espurino, Espruino WiFi, Puck.js, Puckjs, Puck-js, JavaScript, JS, ARM, Arduino, MCU, STM32, NRF, NRF52, Microcontroller, Embedded, Tutorial, Tutorials, Howto, how to, how-to, Project, Example, Projects, Examples, Peripherals, Devices">
+
+<meta name="Distribution" content="Global">
+<meta name="Robots" content="index,follow">
+<title>Tutorials and Examples - Espruino</title>
+
+<script type="text/javascript" async="" src="./Tutorials and Examples - Espruino_files/ga.js.download"></script><script type="text/javascript" src="./Tutorials and Examples - Espruino_files/jquery-1.11.1.min.js.download"></script>
+<link href="./Tutorials and Examples - Espruino_files/bootstrap.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="./Tutorials and Examples - Espruino_files/carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="./Tutorials and Examples - Espruino_files/sitewide.css" type="text/css">
+
+<link rel="stylesheet" href="./Tutorials and Examples - Espruino_files/prettify.css" type="text/css">
+<script src="./Tutorials and Examples - Espruino_files/prettify.js.download"></script>
+<script type="text/javascript" src="./Tutorials and Examples - Espruino_files/search.js.download"></script>
+<script type="text/javascript" src="./Tutorials and Examples - Espruino_files/codeblock.js.download"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.espruino.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "http://www.espruino.com/Search?kw={search_term}",
+    "query-input": "required name=search_term"
+  }
+}
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35839191-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <div class="navbar-wrapper" id="header"> <!-- id=header for search -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.espruino.com/">Espruino</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Tutorials#" class="dropdown-toggle" data-toggle="dropdown">Get Espruino<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Order">Buy Espruino</a></li>
+                <li><a href="http://www.espruino.com/Download">Download firmware</a></li>
+              </ul>
+            </li>
+            <li><a href="http://www.espruino.com/Donate">Donate</a></li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Tutorials#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Quick+Start">Quick Start</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Reference#software">API Reference</a></li>
+                <li><a href="http://www.espruino.com/Tutorials">Tutorials &amp; Examples</a></li>
+                <li><a href="http://www.espruino.com/Modules">Modules</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/EspruinoBoard">Original Espruino</a></li>
+                <li><a href="http://www.espruino.com/Pico">Espruino Pico</a></li>
+                <li><a href="http://www.espruino.com/WiFi">Espruino WiFi</a></li>
+                <li><a href="http://www.espruino.com/Puck.js">Puck.js</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Tutorials#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://forum.espruino.com/">Forums</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/FAQ">FAQ</a></li>
+                <li><a href="http://www.espruino.com/Troubleshooting">Troubleshooting</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Contact+Us">Contact Us</a></li>
+                <li><a href="http://www.espruino.com/Press">Press Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <span class="hidden-sm hidden-xs">
+              <a href="http://www.facebook.com/sharer.php?u=http://www.espruino.com&amp;t=Espruino+JavaScript+for+Microcontrollers" target="_blank" title="Share on Facebook"><img height="20" src="./Tutorials and Examples - Espruino_files/socialtiny_facebook.png" width="20" class="socialtiny"></a>
+              <a href="https://plus.google.com/share?url=http://www.espruino.com" target="_blank" title="Share on Google+"><img height="20" src="./Tutorials and Examples - Espruino_files/socialtiny_google.png" width="20" class="socialtiny"></a>
+              <a href="http://twitter.com/Espruino" target="_blank" title="Follow us on Twitter"><img height="20" src="./Tutorials and Examples - Espruino_files/socialtiny_twitter.png" width="24" class="socialtiny"></a>
+              <a href="http://youtube.com/subscription_center?add_user=espruino" target="_blank" title="YouTube"><img alt="YouTube" src="./Tutorials and Examples - Espruino_files/youtube_tinyw.png"></a>
+            </span>
+
+            <input type="text" class="form-control searchbox" name="searchbox" placeholder="Search..." autocomplete="off" size="15">
+          </form>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+  </div><!-- /.navbar-wrapper -->
+
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div id="mainscroller">
+    <div class="container">
+      <div id="maincontent"><div style="min-height:700px;"><h1 id="tutorials-and-examples">Tutorials and Examples</h1>
+<!---
+* KEYWORDS: Tutorial,Tutorials,Howto,how to,how-to,Project,Example,Projects,Examples,Peripherals,Devices
+--->
+<p>Examples in on this website are designed for the Espruino <a href="http://www.espruino.com/Boards">Boards</a>. They may require modification to work on <a href="http://www.espruino.com/Other+Boards">Other Boards</a>.</p>
+<p>Having trouble finding what you want? Try <a href="http://www.espruino.com/Search">Search</a>ing, or check out the <a href="http://www.espruino.com/Forum">Forum</a>.</p>
+<h2 id="tutorials">Tutorials</h2>
+<ul>
+<li><a href="http://www.espruino.com/NET+Gadgeteer">.NET Gadgeteer Modules</a></li>
+<li><a href="http://www.espruino.com/Pico+Wire+Loop+Game">5 Minute Wire Loop Game</a></li>
+<li><a href="http://www.espruino.com/Battery+Charger">AA/AAA Battery Charger</a></li>
+<li><a href="http://www.espruino.com/About+Bluetooth+LE">About Bluetooth LE</a></li>
+<li><a href="http://www.espruino.com/Bluetooth+Robot">Bluetooth Voice Controlled Robot</a></li>
+<li><a href="http://www.espruino.com/Puck.js+and+Bluetooth+Lightbulbs">Controlling Bluetooth Lights with Puck.js</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Controlling+Other+Pucks">Controlling Other Pucks</a></li>
+<li><a href="http://www.espruino.com/Pico+CPU+Monitor">Controlling Pico from a Computer</a></li>
+<li><a href="http://www.espruino.com/Data+Collection">Data Collection with Espruino</a></li>
+<li><a href="http://www.espruino.com/Dial+Tones">Dial Tones</a></li>
+<li><a href="http://www.espruino.com/Arduino+Differences">Differences between Arduino and Espruino code</a></li>
+<li><a href="http://www.espruino.com/Digital+Dice">Digital Dice</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Door+Light">Door Controlled Light with Puck.js</a></li>
+<li><a href="http://www.espruino.com/Espruino+Home+Computer">Espruino Home Computer</a></li>
+<li><a href="http://www.espruino.com/Web+IDE">Espruino Web IDE</a></li>
+<li><a href="http://www.espruino.com/Clocks">Espruino's Real Time Clock</a></li>
+<li><a href="http://www.espruino.com/Ethernet+Webcam">Ethernet Webcam Display</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Exercise+Machine">Exercise Machine controlled Video </a></li>
+<li><a href="http://www.espruino.com/Extending+Espruino+1">Extending Espruino 1 - Making own firmware extension
+</a></li>
+<li><a href="http://www.espruino.com/Extending+Espruino+2">Extending Espruino 2 - Making a new Graphics class
+</a></li>
+<li><a href="http://www.espruino.com/Web+Server+Favourite+Icon">Favourite Icon on Web Server</a></li>
+<li><a href="http://www.espruino.com/Pico+Flappy+Bird+Game">Flappy Bird Game</a></li>
+<li><a href="http://www.espruino.com/Flashing+Lights">Flashing Lights</a></li>
+<li><a href="http://www.espruino.com/ESP8266_Flashing">Flashing and using the ESP8266 with Espruino</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Quick+Start">Getting Started with Puck.js</a></li>
+<li><a href="http://www.espruino.com/Graphical+Web+Interface">Graphical Web Interface</a></li>
+<li><a href="http://www.espruino.com/Posting+Forms">Handling POSTed data from Forms</a></li>
+<li><a href="http://www.espruino.com/Heater+Controller">Heater Controller</a></li>
+<li><a href="http://www.espruino.com/Home+Automation">Home Automation with Raspberry Pi, MQTT, and Espruino</a></li>
+<li><a href="http://www.espruino.com/Individually+Addressable+LEDs">Individually Addressable LEDs</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Infrared">Infrared Record and Playback with Puck.js</a></li>
+<li><a href="http://www.espruino.com/Infrared+Remote+Control">Infrared Remote Control</a></li>
+<li><a href="http://www.espruino.com/Interactive+Web+UI">Interactive Web-based UI</a></li>
+<li><a href="http://www.espruino.com/KeyPad+Combination+Lock">KeyPad Combination Lock</a></li>
+<li><a href="http://www.espruino.com/KeyPad+Timer">KeyPad Timer</a></li>
+<li><a href="http://www.espruino.com/Logging+to+Google+Sheets">Logging to Google Sheets</a></li>
+<li><a href="http://www.espruino.com/STM32+Peripherals">Low-level STM32 Peripheral access</a></li>
+<li><a href="http://www.espruino.com/Making+Music">Making Sounds and Music</a></li>
+<li><a href="http://www.espruino.com/MeArm">MeArm Robotic Arm</a></li>
+<li><a href="http://www.espruino.com/Fan+Speed">Measuring and Controlling Fan Speed</a></li>
+<li><a href="http://www.espruino.com/Morse+Code+Texting">Morse Code Texting</a></li>
+<li><a href="http://www.espruino.com/Motion+Sensing+Lights">Motion Sensing Lights</a></li>
+<li><a href="http://www.espruino.com/Pico+Buttons">Pico Buttons</a></li>
+<li><a href="http://www.espruino.com/Pico+Clock">Pico Clock</a></li>
+<li><a href="http://www.espruino.com/Pico+Electronic+Dice">Pico Electronic Dice</a></li>
+<li><a href="http://www.espruino.com/Pico+FET+Output">Pico FET Output</a></li>
+<li><a href="http://www.espruino.com/Pico+Infrared">Pico Infrared Transmit and Receive</a></li>
+<li><a href="http://www.espruino.com/Pico+LCD+Hello+World">Pico LCD Display Hello World</a></li>
+<li><a href="http://www.espruino.com/Pico+Light+Sensor">Pico Light Sensor</a></li>
+<li><a href="http://www.espruino.com/Pico+Piano">Pico Piano</a></li>
+<li><a href="http://www.espruino.com/Pico+Vibration">Pico Vibration</a></li>
+<li><a href="http://www.espruino.com/Pico+Weather+Station">Pico Weather Station</a></li>
+<li><a href="http://www.espruino.com/Pocket+Walking+GPS">Pocket 'walking' GPS</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Advertising">Puck.js Advertising with Node.js/Python/C#/Android</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Graphical+Editor">Puck.js Bluetooth with the Graphical Editor</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Music+Control">Puck.js Music Controller</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Security">Puck.js Security and Access Control</a></li>
+<li><a href="http://www.espruino.com/Puck.js+IFTTT">Puck.js and If This Then That</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Node-RED">Puck.js and Node-RED with MQTT</a></li>
+<li><a href="http://www.espruino.com/Puck.js+SMS">Puck.js with SMS control</a></li>
+<li><a href="http://www.espruino.com/Quick+Start">Quick Start</a></li>
+<li><a href="http://www.espruino.com/Remote+Control+Sockets">Remote Control Sockets</a></li>
+<li><a href="http://www.espruino.com/Simple+RGB+strips">Simple LED wiring</a></li>
+<li><a href="http://www.espruino.com/Single+Button+Combination+Lock">Single Button Combination Lock</a></li>
+<li><a href="http://www.espruino.com/Slot+Machine">Slot Machine</a></li>
+<li><a href="http://www.espruino.com/Small+Solar+Powered">Small Solar Powered Espruino</a></li>
+<li><a href="http://www.espruino.com/Snake">Snake Game</a></li>
+<li><a href="http://www.espruino.com/Onboard+LCD">Soldering an LCD directly to Espruino</a></li>
+<li><a href="http://www.espruino.com/Storing+HTTPS+Certificates">Storing HTTPS Certificates</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Night+Light">Temperature Controlled Night Light with Puck.js</a></li>
+<li><a href="http://www.espruino.com/Thermistors">Thermistors</a></li>
+<li><a href="http://www.espruino.com/Time+Lapse+Camera">Time Lapse Camera</a></li>
+<li><a href="http://www.espruino.com/Typescript+and+Visual+Studio+Code+IDE">Typescript and Visual Studio Code IDE</a></li>
+<li><a href="http://www.espruino.com/Software+PWM">Understanding PWM and Implementing it Yourself</a></li>
+<li><a href="http://www.espruino.com/Alternative+Terminal+Apps">Using Alternative Terminal Apps</a></li>
+<li><a href="http://www.espruino.com/Control+LED+with+Button">Using BTN1 to turn on an LED</a></li>
+<li><a href="http://www.espruino.com/Puck.js+Web+Bluetooth">Using Puck.js from a Web Bluetooth Website</a></li>
+<li><a href="http://www.espruino.com/ESP8266_WifiUsage">Using the ESP8266 with Wifi</a></li>
+<li><a href="http://www.espruino.com/Water+Simulation">Water Physics with Servo Motors</a></li>
+<li><a href="http://www.espruino.com/Web+Bluetooth+Dashboard">Web Bluetooth Dashboards</a></li>
+<li><a href="http://www.espruino.com/Web+Bluetooth+On+Linux">Web Bluetooth on Linux</a></li>
+<li><a href="http://www.espruino.com/Raspberry+Pi+Web+IDE">Web IDE on a Raspberry Pi</a></li>
+<li><a href="http://www.espruino.com/WiFi+Enabled+Thermometer">WiFi Enabled Thermometer</a></li>
+<li><a href="http://www.espruino.com/Wireless+Temperature+Sensor">Wireless Temperature Sensor</a></li>
+<li><a href="http://www.espruino.com/Word+Clock">Word Clock</a></li>
+<li><a href="http://www.espruino.com/Writing+Modules">Writing and Submitting Modules (or changes)</a></li>
+<li><a href="http://www.espruino.com/Writing+Tutorials">Writing and Submitting Tutorials (or changes)</a></li>
+<li><a href="http://www.espruino.com/YouTube+View+Counter">YouTube View Counter</a></li>
+</ul>
+<h2 id="tasks">Tasks</h2>
+<ul>
+<li><a href="http://www.espruino.com/AdvancedDebug">Advanced Debug</a></li>
+<li><a href="http://www.espruino.com/Image+Converter">Converting Bitmaps for Graphics</a></li>
+<li><a href="http://www.espruino.com/File+Converter">Converting files to Strings</a></li>
+<li><a href="http://www.espruino.com/File+IO">File IO and SD cards</a></li>
+<li><a href="http://www.espruino.com/Fonts">Fonts</a></li>
+<li><a href="http://www.espruino.com/Fractals">Fractals</a></li>
+<li><a href="http://www.espruino.com/Graphics">Graphics Library</a></li>
+<li><a href="http://www.espruino.com/Interfacing">Interfacing to a PC</a></li>
+<li><a href="http://www.espruino.com/Internet">Internet (HTTP)</a></li>
+<li><a href="http://www.espruino.com/Mounting">Mounting the Espruino Board</a></li>
+</ul>
+<h2 id="peripherals">Peripherals</h2>
+<ul>
+<li><a href="http://www.espruino.com/Analog">Analog IO</a></li>
+<li><a href="http://www.espruino.com/ADC">Analog to Digital Converter</a></li>
+<li><a href="http://www.espruino.com/DAC">Digital to Analog Converter</a></li>
+<li><a href="http://www.espruino.com/I2C">I2C - Inter-Integrated Circuit</a></li>
+<li><a href="http://www.espruino.com/STM32+Peripherals">Low-level STM32 Peripheral access</a></li>
+<li><a href="http://www.espruino.com/OneWire">OneWire</a></li>
+<li><a href="http://www.espruino.com/PWM">Pulse Width Modulation</a></li>
+<li><a href="http://www.espruino.com/SPI">SPI - Serial Peripheral Interface</a></li>
+<li><a href="http://www.espruino.com/Television">TV Out</a></li>
+<li><a href="http://www.espruino.com/USART">USART / UART / Serial Port</a></li>
+<li><a href="http://www.espruino.com/Waveform">Waveforms</a></li>
+</ul>
+<h2 id="devices">Devices</h2>
+<ul>
+<li><a href="http://www.espruino.com/Accelerometer">Accelerometers</a></li>
+<li><a href="http://www.espruino.com/Battery">Battery</a></li>
+<li><a href="http://www.espruino.com/Bluetooth">Bluetooth</a></li>
+<li><a href="http://www.espruino.com/Bluetooth+BLE">Bluetooth BLE 4.0 (HM-10)</a></li>
+<li><a href="http://www.espruino.com/Breadboard">Breadboard</a></li>
+<li><a href="http://www.espruino.com/Button">Buttons</a></li>
+<li><a href="http://www.espruino.com/EEPROMs">EEPROMs (and related technologies)</a></li>
+<li><a href="http://www.espruino.com/RobotPCB">Espruino Pico Robot PCB</a></li>
+<li><a href="http://www.espruino.com/InfraredProximity">Infrared Proximity Sensor</a></li>
+<li><a href="http://www.espruino.com/L293D">L293D Motor Driver IC</a></li>
+<li><a href="http://www.espruino.com/LIS302DL">LIS302DL Accelerometer</a></li>
+<li><a href="http://www.espruino.com/LIS3MDL">LIS3MDL</a></li>
+<li><a href="http://www.espruino.com/LM393">LM339/393 Comparator (set watch on analog voltage)</a></li>
+<li><a href="http://www.espruino.com/LSM303DLHC">LSM303DLHC Accelerometer</a></li>
+<li><a href="http://www.espruino.com/LDR">Light Dependent Resistor</a></li>
+<li><a href="http://www.espruino.com/mosfets">MOSFETs</a></li>
+<li><a href="http://www.espruino.com/Pin+Strip">Pin and Socket Strip</a></li>
+<li><a href="http://www.espruino.com/Pyroelectric">Pyroelectric Motion Sensor</a></li>
+<li><a href="http://www.espruino.com/RGB123">RGB123 LED Matrices/Strips</a></li>
+<li><a href="http://www.espruino.com/Relays">Relays</a></li>
+<li><a href="http://www.espruino.com/Robot">Robots</a></li>
+<li><a href="http://www.espruino.com/Sensors">Sensors</a></li>
+<li><a href="http://www.espruino.com/Speaker">Speaker</a></li>
+<li><a href="http://www.espruino.com/StepperMotor">Stepper Motor Module</a></li>
+<li><a href="http://www.espruino.com/Stepper+Motors">Stepper Motors</a></li>
+<li><a href="http://www.espruino.com/ULN2003">ULN2003 Transistor Array</a></li>
+<li><a href="http://www.espruino.com/VCNL4020">VCNL4020</a></li>
+<li><a href="http://www.espruino.com/Vibration">Vibration Sensor</a></li>
+<li><a href="http://www.espruino.com/WS2811">WS2811/WS2812/WS2812B/APA104/APA106/SK6812 LED String/Strip</a></li>
+<li><a href="http://www.espruino.com/Wireless">Wireless</a></li>
+</ul>
+<p>Also see <a href="http://www.espruino.com/Modules">Modules</a> for a list of other devices that are supported by modules.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li><a href="http://www.espruino.com/distance_sensing_robot">Distance Sensing Robot</a></li>
+<li><a href="http://www.espruino.com/http_file_server">HTTP File Server</a></li>
+<li><a href="http://www.espruino.com/http_get_image">HTTP Image Loader</a></li>
+<li><a href="http://www.espruino.com/slideshow_ili9341">Image Slideshow with ILI9341 display</a></li>
+<li><a href="http://www.espruino.com/ws2811_led_clock">LED Clock (using WS8111)</a></li>
+<li><a href="http://www.espruino.com/led_vu_meter">LED Volume (VU) Meter</a></li>
+<li><a href="http://www.espruino.com/rgb123_reaction_timer">Reaction Timer using RGB123</a></li>
+<li><a href="http://www.espruino.com/wii_remote_control_helicopter">Remote Control Helicopter with Wii Nunchuck</a></li>
+<li><a href="http://www.espruino.com/run_code_from_eeprom">Running code from an EEPROM</a></li>
+<li><a href="http://www.espruino.com/simple_data_logger">Simple Data Logger</a></li>
+<li><a href="http://www.espruino.com/temperature_graph_pcd8544">Temperature Graph on a PCD8544 display, with DS18B20 temperature sensor</a></li>
+<li><a href="http://www.espruino.com/temperature_display_pcd8544">Temperature on a PCD8544 display, with DS18B20 temperature sensor</a></li>
+<li><a href="http://www.espruino.com/useless_box">The Useless Box - a box that turns itself off</a></li>
+<li><a href="http://www.espruino.com/wifi_humidity">WiFi Xively Humidity/Temperature Sensor with Display</a></li>
+<li><a href="http://www.espruino.com/WiFi+Remote+Console">Wifi Remote Console</a></li>
+</ul>
+</div><p style="text-align:right;font-size:75%;">This page is auto-generated from <a href="https://github.com/espruino/EspruinoDocs/blob/master/Tutorials.md">GitHub</a>. If you see any mistakes or have suggestions, please <a href="https://github.com/espruino/EspruinoDocs/issues/new?title=Tutorials.md">let us know</a>.</p></div>
+      <div class="row">
+        <div id="sidebar" class="col-md-3 hidden-sm hidden-xs"></div>
+        <div id="maincolumn" class="col-md-9"></div>
+      </div>
+
+      <hr>
+      <!-- FOOTER -->
+      <footer>
+        <p>
+  			© 2017 <strong>Pur3 Ltd</strong>
+  			(<a href="http://www.espruino.com/Tutorials?print">Printable Version</a>)
+        <a href="http://www.espruino.com/edit.php?page=Tutorials" class="edit" style="float:right;">π</a>
+  			</p>
+      </footer>
+
+    </div><!-- /.container -->
+  </div><!-- /#mainscroller -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script>
+    // if there's a contents element, add it to the page
+    var contents = document.getElementById("contents");
+    if (contents) {
+      document.getElementById("sidebar").appendChild(contents);
+      document.getElementById("maincolumn").appendChild(document.getElementById("maincontent"));
+    }
+  </script>
+  <script src="./Tutorials and Examples - Espruino_files/jquery-1.11.1.min.js.download"></script>
+  <script src="./Tutorials and Examples - Espruino_files/bootstrap.min.js.download"></script>
+  <script type="text/javascript" src="./Tutorials and Examples - Espruino_files/search.js.download"></script>
+
+
+</body></html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0030)http://www.espruino.com/Saving -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=650, initial-scale=1">
+<meta name="Description" content="JavaScript on a Microcontroller">
+<meta name="Keywords" content="Espruino, Pico, Espruino Pico, Espurino, Espruino WiFi, Puck.js, Puckjs, Puck-js, JavaScript, JS, ARM, Arduino, MCU, STM32, NRF, NRF52, Microcontroller, Embedded, Save, saving, write, flash, flashing, save(), load, non-volatile">
+
+<meta name="Distribution" content="Global">
+<meta name="Robots" content="index,follow">
+<title>Saving code on Espruino</title>
+
+<script type="text/javascript" async="" src="./Saving code on Espruino_files/ga.js.download"></script><script type="text/javascript" src="./Saving code on Espruino_files/jquery-1.11.1.min.js.download"></script>
+<link href="./Saving code on Espruino_files/bootstrap.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="./Saving code on Espruino_files/carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="./Saving code on Espruino_files/sitewide.css" type="text/css">
+
+<link rel="stylesheet" href="./Saving code on Espruino_files/prettify.css" type="text/css">
+<script src="./Saving code on Espruino_files/prettify.js.download"></script>
+<script type="text/javascript" src="./Saving code on Espruino_files/search.js.download"></script>
+<script type="text/javascript" src="./Saving code on Espruino_files/codeblock.js.download"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.espruino.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "http://www.espruino.com/Search?kw={search_term}",
+    "query-input": "required name=search_term"
+  }
+}
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35839191-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <div class="navbar-wrapper" id="header"> <!-- id=header for search -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.espruino.com/">Espruino</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Saving#" class="dropdown-toggle" data-toggle="dropdown">Get Espruino<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Order">Buy Espruino</a></li>
+                <li><a href="http://www.espruino.com/Download">Download firmware</a></li>
+              </ul>
+            </li>
+            <li><a href="http://www.espruino.com/Donate">Donate</a></li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Saving#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Quick+Start">Quick Start</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Reference#software">API Reference</a></li>
+                <li><a href="http://www.espruino.com/Tutorials">Tutorials &amp; Examples</a></li>
+                <li><a href="http://www.espruino.com/Modules">Modules</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/EspruinoBoard">Original Espruino</a></li>
+                <li><a href="http://www.espruino.com/Pico">Espruino Pico</a></li>
+                <li><a href="http://www.espruino.com/WiFi">Espruino WiFi</a></li>
+                <li><a href="http://www.espruino.com/Puck.js">Puck.js</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/Saving#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://forum.espruino.com/">Forums</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/FAQ">FAQ</a></li>
+                <li><a href="http://www.espruino.com/Troubleshooting">Troubleshooting</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Contact+Us">Contact Us</a></li>
+                <li><a href="http://www.espruino.com/Press">Press Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <span class="hidden-sm hidden-xs">
+              <a href="http://www.facebook.com/sharer.php?u=http://www.espruino.com&amp;t=Espruino+JavaScript+for+Microcontrollers" target="_blank" title="Share on Facebook"><img height="20" src="./Saving code on Espruino_files/socialtiny_facebook.png" width="20" class="socialtiny"></a>
+              <a href="https://plus.google.com/share?url=http://www.espruino.com" target="_blank" title="Share on Google+"><img height="20" src="./Saving code on Espruino_files/socialtiny_google.png" width="20" class="socialtiny"></a>
+              <a href="http://twitter.com/Espruino" target="_blank" title="Follow us on Twitter"><img height="20" src="./Saving code on Espruino_files/socialtiny_twitter.png" width="24" class="socialtiny"></a>
+              <a href="http://youtube.com/subscription_center?add_user=espruino" target="_blank" title="YouTube"><img alt="YouTube" src="./Saving code on Espruino_files/youtube_tinyw.png"></a>
+            </span>
+
+            <input type="text" class="form-control searchbox" name="searchbox" placeholder="Search..." autocomplete="off" size="15">
+          </form>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+  </div><!-- /.navbar-wrapper -->
+
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div id="mainscroller">
+    <div class="container">
+      <div id="maincontent"><div style="min-height:700px;"><h1 id="saving-code-on-espruino">Saving code on Espruino</h1>
+<!---
+* KEYWORDS: Save,saving,write,flash,flashing,save(),load,non-volatile
+--->
+<p>When you upload code to Espruino normally, it is stored in Espruino's RAM.
+If you reset the board or power is lost, all your code will be lost.</p>
+<p>However it's easy to save your code to flash memory and make it permanent. 
+There are two main ways to do it with Espruino.</p>
+<h2 id="-save-"><code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code></h2>
+<p>If you type <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> on the left-hand side of the IDE after your code is
+uploaded, the contents of Espruino's RAM at that point will be compressed
+and written in to flash memory.</p>
+<p>This includes:</p>
+<ul>
+<li>All variables and functions</li>
+<li>Any watches created with <code class="prettyprint prettyprinted" style=""><span class="pln">setWatch</span></code></li>
+<li>Timeouts and intervals created with <code class="prettyprint prettyprinted" style=""><span class="pln">setTimeout</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">setInterval</span></code></li>
+<li>All Pin states</li>
+</ul>
+<p>When power is next applied, Espruino will load the information back out of
+flash and will resume where it left off. You can think of this a bit like
+'hibernate' on a PC.</p>
+<p>This is the standard way of saving code in Espruino, and it means that
+you can interact with your code on the left-hand side of the IDE, changing
+variables and functions, and can then save everything - including your changes.</p>
+<p>For instance, if you upload the code <code class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> t </span><span class="pun">=</span><span class="pln"> E</span><span class="pun">.</span><span class="pln">getTemperature</span><span class="pun">()</span></code> and type
+<code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>, <code class="prettyprint prettyprinted" style=""><span class="pln">t</span></code> will contain the temperature of the device <em>at the time that
+you uploaded</em> - <strong>not</strong> at the time the device started, or even the time you
+typed <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>.</p>
+<p>However, this means that any code that was executed at upload time will not
+be re-executed. For instance you may have some external hardware like an LCD 
+display connected to Espruino - after applying power, the LCD will need to be 
+initialised (since it can not remember its state). In this case you can 
+create a function called <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span></code> (or add a <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">})</span></code>
+listener) that is automatically called by the interpreter when it
+initialises.</p>
+<p>Once code is saved, you can return the interpreter to a 'clean' state
+with <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code>. This won't clear out any of the saved data in flash, so
+if you reboot the device (or call <code class="prettyprint prettyprinted" style=""><span class="pln">load</span><span class="pun">()</span></code>) it will re-load your previously
+saved state. To completely clear out  saved code, run <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code> and <em>then</em> 
+run <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> to save the clean state back into flash memory.</p>
+<h3 id="pros">Pros</h3>
+<ul>
+<li>Once you have your software working, you can just <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> and it will keep working</li>
+<li>You can make changes to <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>d code and can then type <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> again to save your changes</li>
+<li>JS code isn't stored in flash as plain text, so is harder for a malicious user to extract</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">setFlags</span><span class="pun">({</span><span class="pln">pretokenise</span><span class="pun">:</span><span class="lit">1</span><span class="pun">})</span></code> will allow JavaScript code in RAM to be heavily compacted, and to execute more quickly.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li>Not as memory efficient since everything is stored in RAM</li>
+<li>Some formatting of the code inside functions may change, and comments outside functions won't be saved</li>
+<li>Any code that has to be run at startup needs to be placed in a function called <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span></code>, or a <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">})</span></code> event handler</li>
+</ul>
+<h3 id="gotchas">Gotchas</h3>
+<ul>
+<li>Unless you use  <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span></code> or <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...)</span></code>, code won't run at boot time.</li>
+<li>Since <code class="prettyprint prettyprinted" style=""><span class="pln">setWatch</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">setInterval</span></code> are remembered, if you call them in <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span></code> and then <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> multiple times, you can end up with multiple copies. You can use <code class="prettyprint prettyprinted" style=""><span class="pln">clearInterval</span><span class="pun">()</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">clearWatch</span><span class="pun">()</span></code> to avoid that.</li>
+<li>When uploading code with an <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span><span class="pun">()</span></code> or <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...)</span></code> function the function won't be called at upload time and to test you'll have to either <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> or call <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span><span class="pun">()</span></code> manually.</li>
+</ul>
+<h2 id="save-on-send">Save on Send</h2>
+<p><code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> is an option in the Espruino IDE. Behind the scenes it uses
+the <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">setBootCode</span></code> command to save JS code directly into Espruino's 
+flash memory. When Espruino boots up, it then executes the JavaScript code.</p>
+<p>This is similar to the way you'd program a 'normal' microcontroller.</p>
+<p>For instance, if you upload the code <code class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> t </span><span class="pun">=</span><span class="pln"> E</span><span class="pun">.</span><span class="pln">getTemperature</span><span class="pun">()</span></code> with
+<code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> enabled, <code class="prettyprint prettyprinted" style=""><span class="pln">t</span></code> will be set to the temperature every time
+the device is powered on (in contrast to what happens when you use <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>.</p>
+<p><code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> (in the Communications section of the IDE) has three settings:</p>
+<ul>
+<li><code class="prettyprint prettyprinted" style=""><span class="typ">No</span></code> - code is uploaded to RAM, but can be saved with <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code> (as above)</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="typ">Yes</span></code> - JavaScript code is saved to flash and loaded even after boot. 
+If <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code> is called, Espruino will remove all code from RAM and will
+not execute the saved JS code.</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="typ">Yes</span><span class="pun">,</span><span class="pln"> execute even after reset</span><span class="pun">()</span></code> - JavaScript code is saved to flash and 
+loaded even after boot. If <code class="prettyprint prettyprinted" style=""><span class="pln">reset</span><span class="pun">()</span></code> is called, Espruino will remove all
+<code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>d code from RAM, but will still execute the JS code that you saved. See
+the 'Both Options' section.</li>
+</ul>
+<p>To remove any code saved with <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code>, simply call <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">setBootCode</span><span class="pun">()</span></code> with
+no arguments.</p>
+<h3 id="pros">Pros</h3>
+<ul>
+<li>Runs all code at boot-time, so there's no need for an <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span><span class="pun">()</span></code> function</li>
+<li>The code inside each function is kept in Flash memory, so doesn't use up
+as much RAM. This is also true for Modules if <code class="prettyprint prettyprinted" style=""><span class="typ">Modules</span><span class="pln"> uploaded </span><span class="kwd">as</span><span class="pln"> functions</span></code>
+is enabled in the IDE.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li>Your JavaScript code is stored in flash as plain text, so can easily be read out</li>
+<li>If you make changes using the left-hand side of the IDE, there is no way to save them</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">setFlags</span><span class="pun">({</span><span class="pln">pretokenise</span><span class="pun">:</span><span class="lit">1</span><span class="pun">})</span></code> will have no effect, since a function's code will be kept in Flash</li>
+<li>It isn't possible to run code at upload time - code only ever runs when the device powers on.</li>
+</ul>
+<h3 id="gotchas">Gotchas</h3>
+<ul>
+<li>If you turn on <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code>, upload code, and then turn it off, you can be left
+with both bits of code in Espruino at the same time (see 'Both Options' below).</li>
+</ul>
+<h2 id="both-options">Both options</h2>
+<p>It is possible to combine <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>. In this case, the contents
+of RAM will be loaded from Flash, then the code saved with <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> will
+be executed, and finally <code class="prettyprint prettyprinted" style=""><span class="pln">onInit</span><span class="pun">()</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...)</span></code> will be called.</p>
+<p>This allows you to write separate code with <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on </span><span class="typ">Send</span></code> that can ensure
+certain things are always done, regardless of the code saved with <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>.</p>
+<p>For instance if you're making a device like <a href="http://www.espruino.com/Espruino+Home+Computer">the Espruino Home Computer</a>
+then you might want to use <code class="prettyprint prettyprinted" style=""><span class="typ">Save</span><span class="pln"> on send</span></code> to save all the code that initialises
+the display and keyboard. The computer can then be programmed and its state
+saved with <code class="prettyprint prettyprinted" style=""><span class="pln">save</span><span class="pun">()</span></code>, but regardless of what is saved to the device you will
+always be able to rely on the display and keyboard being set up correctly.</p>
+<h2 id="notes">Notes</h2>
+<p>You may be able to save code to Espruino that puts it into a state that
+stops you from reprogramming it. On most boards, holding down a button while
+applying power can be used to force the device to boot <em>without loading any
+of the saved code</em>. Take a look at the information page on your specific
+board for more information.</p>
+</div><p style="text-align:right;font-size:75%;">This page is auto-generated from <a href="https://github.com/espruino/EspruinoDocs/blob/master/info/Saving.md">GitHub</a>. If you see any mistakes or have suggestions, please <a href="https://github.com/espruino/EspruinoDocs/issues/new?title=info/Saving.md">let us know</a>.</p></div>
+      <div class="row">
+        <div id="sidebar" class="col-md-3 hidden-sm hidden-xs"></div>
+        <div id="maincolumn" class="col-md-9"></div>
+      </div>
+
+      <hr>
+      <!-- FOOTER -->
+      <footer>
+        <p>
+  			© 2017 <strong>Pur3 Ltd</strong>
+  			(<a href="http://www.espruino.com/Saving?print">Printable Version</a>)
+        <a href="http://www.espruino.com/edit.php?page=Saving" class="edit" style="float:right;">π</a>
+  			</p>
+      </footer>
+
+    </div><!-- /.container -->
+  </div><!-- /#mainscroller -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script>
+    // if there's a contents element, add it to the page
+    var contents = document.getElementById("contents");
+    if (contents) {
+      document.getElementById("sidebar").appendChild(contents);
+      document.getElementById("maincolumn").appendChild(document.getElementById("maincontent"));
+    }
+  </script>
+  <script src="./Saving code on Espruino_files/jquery-1.11.1.min.js.download"></script>
+  <script src="./Saving code on Espruino_files/bootstrap.min.js.download"></script>
+  <script type="text/javascript" src="./Saving code on Espruino_files/search.js.download"></script>
+
+
+</body></html>

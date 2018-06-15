@@ -1,0 +1,1072 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0029)http://www.espruino.com/ESP32 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=650, initial-scale=1">
+<meta name="Description" content="JavaScript on a Microcontroller">
+<meta name="Keywords" content="Espruino, Pico, Espruino Pico, Espurino, Espruino WiFi, Puck.js, Puckjs, Puck-js, JavaScript, JS, ARM, Arduino, MCU, STM32, NRF, NRF52, Microcontroller, Embedded, ESP32, Espruino, Board, PCB, Pinout, Internet, WiFi, Wireless, Radio">
+
+<meta name="Distribution" content="Global">
+<meta name="Robots" content="index,follow">
+<title>Espruino on ESP32</title>
+
+<script type="text/javascript" async="" src="./Espruino on ESP32_files/ga.js.download"></script><script type="text/javascript" src="./Espruino on ESP32_files/jquery-1.11.1.min.js.download"></script>
+<link href="./Espruino on ESP32_files/bootstrap.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="./Espruino on ESP32_files/carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="./Espruino on ESP32_files/sitewide.css" type="text/css">
+
+<link rel="stylesheet" href="./Espruino on ESP32_files/prettify.css" type="text/css">
+<script src="./Espruino on ESP32_files/prettify.js.download"></script>
+<script type="text/javascript" src="./Espruino on ESP32_files/search.js.download"></script>
+<script type="text/javascript" src="./Espruino on ESP32_files/codeblock.js.download"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.espruino.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "http://www.espruino.com/Search?kw={search_term}",
+    "query-input": "required name=search_term"
+  }
+}
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35839191-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <div class="navbar-wrapper" id="header"> <!-- id=header for search -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.espruino.com/">Espruino</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="http://www.espruino.com/ESP32#" class="dropdown-toggle" data-toggle="dropdown">Get Espruino<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Order">Buy Espruino</a></li>
+                <li><a href="http://www.espruino.com/Download">Download firmware</a></li>
+              </ul>
+            </li>
+            <li><a href="http://www.espruino.com/Donate">Donate</a></li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/ESP32#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.espruino.com/Quick+Start">Quick Start</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Reference#software">API Reference</a></li>
+                <li><a href="http://www.espruino.com/Tutorials">Tutorials &amp; Examples</a></li>
+                <li><a href="http://www.espruino.com/Modules">Modules</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/EspruinoBoard">Original Espruino</a></li>
+                <li><a href="http://www.espruino.com/Pico">Espruino Pico</a></li>
+                <li><a href="http://www.espruino.com/WiFi">Espruino WiFi</a></li>
+                <li><a href="http://www.espruino.com/Puck.js">Puck.js</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://www.espruino.com/ESP32#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://forum.espruino.com/">Forums</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/FAQ">FAQ</a></li>
+                <li><a href="http://www.espruino.com/Troubleshooting">Troubleshooting</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.espruino.com/Contact+Us">Contact Us</a></li>
+                <li><a href="http://www.espruino.com/Press">Press Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <span class="hidden-sm hidden-xs">
+              <a href="http://www.facebook.com/sharer.php?u=http://www.espruino.com&amp;t=Espruino+JavaScript+for+Microcontrollers" target="_blank" title="Share on Facebook"><img height="20" src="./Espruino on ESP32_files/socialtiny_facebook.png" width="20" class="socialtiny"></a>
+              <a href="https://plus.google.com/share?url=http://www.espruino.com" target="_blank" title="Share on Google+"><img height="20" src="./Espruino on ESP32_files/socialtiny_google.png" width="20" class="socialtiny"></a>
+              <a href="http://twitter.com/Espruino" target="_blank" title="Follow us on Twitter"><img height="20" src="./Espruino on ESP32_files/socialtiny_twitter.png" width="24" class="socialtiny"></a>
+              <a href="http://youtube.com/subscription_center?add_user=espruino" target="_blank" title="YouTube"><img alt="YouTube" src="./Espruino on ESP32_files/youtube_tinyw.png"></a>
+            </span>
+
+            <input type="text" class="form-control searchbox" name="searchbox" placeholder="Search..." autocomplete="off" size="15">
+          </form>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+  </div><!-- /.navbar-wrapper -->
+
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div id="mainscroller">
+    <div class="container">
+      <div id="maincontent"><div style="min-height:700px;"><h1 id="espruino-on-esp32">Espruino on ESP32</h1>
+<!---
+* KEYWORDS: ESP32,Espruino,Board,PCB,Pinout,Internet,WiFi,Wireless,Radio
+--->
+<p><strong>Note:</strong> *This page documents running the Espruino firmware on the ESP32 board.</p>
+<p><strong>Warning:</strong> Espruino on the ESP32 defaults to 115200 baud on its serial interface. This means you
+will need to adjust this setting in the IDE if you use that. (Other Espruino ports default to 9600 baud.)</p>
+<h2 id="overview">Overview</h2>
+<p>The <a href="https://espressif.com/en/products/hardware/esp32/overview">ESP32</a> is a dual core Tensilica LX6
+microcontroller with 520 KB SRAM, integrated Wifi, Bluetooth, and more.  <a href="https://github.com/espruino/Espruino">Espruino</a>
+is a very light weight JavaScript interpreter that runs on the ESP32, and other microcontrollers.</p>
+<p>This documentation is intended for those who want to run JavaScript on any ESP32 microcontrollers.
+It will describe how to flash the ESP32 with the latest firmware, connect to Wifi and get the
+other pins going.</p>
+<p>There are a few different boards that contain the ESP32 microcontroller.  These instructions below
+should be generic enough for all boards, but you may have to adapt the instructions in places.</p>
+<hr>
+<h3 id="quick-links">Quick links</h3>
+<ul>
+<li><a href="http://www.espruino.com/Download">Download the latest ESP32 firmware release</a> (From v1.92 onward)</li>
+<li><a href="http://www.espruino.com/binaries/travis/master/">Download 'cutting edge' ESP32 firmware</a> - these may not always work</li>
+<li><a href="http://forum.espruino.com/microcosms/1086/">Espruino ESP32 Forum</a> - Main support forum</li>
+<li><a href="https://www.esp32.com/">ESP32 Forum</a></li>
+<li><a href="https://gitter.im/espruino/esp32">Developer chat for Espruino ESP32</a> - Focuses on development issues.</li>
+</ul>
+<h3 id="esp32-features">ESP32 Features</h3>
+<ul>
+<li>240 MHz dual core Tensilica LX6 microcontroller</li>
+<li>Built-in Wifi and Bluetooth (classic and BLE)</li>
+<li>2.2V to 3.6V operating voltage</li>
+<li>32 GPIO pins:<ul>
+<li>3x UARTs, including hardware flow control</li>
+<li>3x SPI</li>
+<li>2x I2S</li>
+<li>12x ADC input channels</li>
+<li>2x DAC</li>
+<li>2x I2C</li>
+<li>PWM/timer input/output available on every GPIO pin</li>
+<li>Supports external SPI flash up to 16 MB</li>
+<li>SD-card interface support</li>
+</ul>
+</li>
+<li>Sensors: Ultra-low noise analog amplifier, Hall sensor, 10x capacitive touch interface, 32 kHz crystal oscillator</li>
+</ul>
+<h3 id="limitations-work-in-progress">Limitations / Work in Progress</h3>
+<p>Supported by Espruino on the ESP32:</p>
+<ul>
+<li>onewire</li>
+<li>hardware SPI</li>
+<li>hardware I2C</li>
+<li>DAC</li>
+<li>ADC</li>
+<li>Serial</li>
+<li>WIFI - as a client and access point</li>
+</ul>
+<p>Not supported by Espruino on the ESP32 (yet):</p>
+<ul>
+<li>No Over-The-Air (OTA) firmware updates.</li>
+<li>Bluetooth and BLE</li>
+</ul>
+<h3 id="known-issues">Known Issues</h3>
+<ul>
+<li>Espruino Web IDE has issues with the ESP32, see <a href="http://www.espruino.com/ESP32#espruino-web-ide">below</a>.</li>
+</ul>
+<hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installing-drivers">Installing drivers</h3>
+<p>Depending on the board and operating system you have, you might want to install the FTDI or Silicon Labs USB driver:</p>
+<ul>
+<li><a href="http://www.ftdichip.com/Drivers/D2XX.htm">FTDI</a></li>
+<li><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">Silicon Labs CP210x</a></li>
+</ul>
+<h3 id="flashing">Flashing</h3>
+<p>If your device is not already flashed, below are the instructions.  Flashing involves downloading the latest firmware to your PC and then copying via USB cable to the microcontroller.</p>
+<p><em>Note:</em> This flashing process is being improved.  We expect to remove the
+build stage and provide the firmware as a download.</p>
+<h4 id="building-firmware-and-installing-the-toolchain">Building Firmware and installing the toolchain</h4>
+<p>You can get the Espruino firmare from the <a href="http://www.espruino.com/binaries/travis/master/">Travis cutting-edge builds</a>.
+Get the file ending in '_esp32.bin'.</p>
+<p>You can also build the Espruino firmware yourself:</p>
+<p>The following work in a bash shell environment, you will need git, and other essential build tools (e.g. on Ubuntu run <code class="prettyprint prettyprinted" style=""><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install build</span><span class="pun">-</span><span class="pln">essential</span></code>).</p>
+<pre><code class="lang-sh prettyprint prettyprinted" style=""><span class="com"># Get the Espruino source code</span><span class="pln">
+git clone https</span><span class="pun">://</span><span class="pln">github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">/</span><span class="pln">espruino</span><span class="pun">/</span><span class="typ">Espruino</span><span class="pun">.</span><span class="pln">git
+cd </span><span class="typ">Espruino</span><span class="pln">
+</span><span class="com"># Download and set up the toolchain ('source' is important here)</span><span class="pln">
+source scripts</span><span class="pun">/</span><span class="pln">provision</span><span class="pun">.</span><span class="pln">sh ESP32
+</span><span class="com"># Clean and rebuild</span><span class="pln">
+make clean </span><span class="pun">&amp;&amp;</span><span class="pln"> BOARD</span><span class="pun">=</span><span class="pln">ESP32 make</span></code></pre>
+<p>You will have a file called <code class="prettyprint prettyprinted" style=""><span class="pln">espruino_esp32</span><span class="pun">.</span><span class="pln">bin</span></code>.  This is your ESP32 firmware.</p>
+<h4 id="the-actual-flash">The actual flash</h4>
+<p>Download <a href="https://github.com/espressif/esptool">esptool</a> if you haven't downloaded it already.</p>
+<p>To flash the ESP32 we use <code class="prettyprint prettyprinted" style=""><span class="pln">esptool</span><span class="pun">.</span><span class="pln">py</span></code>.  Before you run <code class="prettyprint prettyprinted" style=""><span class="pln">esptool</span><span class="pun">.</span><span class="pln">py</span></code>, make sure
+you know the flashing procedure for the board you have.  Some boards have a flash
+button, that you press when you are running the flash utility.  For boards such
+as the Dev Kit C board - The DTS and RTS lines are used and put the board into bootloader mode automatically</p>
+<h5 id="pycom-boards">PyCom boards</h5>
+<p>for <a href="https://www.pycom.io/">PyCom boards</a> with the ESP32 microcontroller you need to:</p>
+<ol>
+<li>connect the ESP32 board to your PC using the USB cable.</li>
+<li>hold pin G23 to GND;</li>
+<li>run the following command; and then</li>
+<li>press the reset button.</li>
+</ol>
+<h5 id="esp-wroom-32-plain-no-dev-board-">ESP-WROOM-32 (plain, no dev board)</h5>
+<ol>
+<li>connect pins as follows<pre><code class="prettyprint prettyprinted" style=""><span class="pln">VCC </span><span class="pun">-&gt;</span><span class="pln"> VCC</span><span class="pun">(</span><span class="lit">3.3V</span><span class="pun">)</span><span class="pln">
+GND </span><span class="pun">-&gt;</span><span class="pln"> GND
+EN </span><span class="pun">-&gt;</span><span class="pln"> VCC
+TX </span><span class="pun">-&gt;</span><span class="pln"> RX </span><span class="pun">(</span><span class="pln">on usb controller</span><span class="pun">)</span><span class="pln">
+RX </span><span class="pun">-&gt;</span><span class="pln"> TX </span><span class="pun">(</span><span class="pln">on usb controller</span><span class="pun">)</span><span class="pln">
+IO0 </span><span class="pun">-&gt;</span><span class="pln"> GND </span><span class="pun">(</span><span class="pln">only </span><span class="kwd">for</span><span class="pln"> flash</span><span class="pun">)</span><a href="http://www.espruino.com/webide?code=VCC%20-%3E%20VCC(3.3V)%0AGND%20-%3E%20GND%0AEN%20-%3E%20VCC%0ATX%20-%3E%20RX%20(on%20usb%20controller)%0ARX%20-%3E%20TX%20(on%20usb%20controller)%0AIO0%20-%3E%20GND%20(only%20for%20flash)%0A" class="codelink" title="Send to Web IDE"></a></code></pre></li>
+<li>run the following command; and then</li>
+<li>leave IO0 floating (not connected) and reset chip</li>
+</ol>
+<h5 id="esp-wroom-32-dev-board-">ESP-WROOM-32 (dev board)</h5>
+<p>Flashing can be done by USB, no special actions on pins are needed.</p>
+<h5 id="flashing-command">Flashing command</h5>
+<p>The following command will write the flash to the ESP32.  Note you need to
+select the correct port, on Windows it will be something like <code class="prettyprint prettyprinted" style=""><span class="pln">COM3</span></code>.</p>
+<h6 id="initial-flash">Initial flash</h6>
+<pre><code class="lang-sh prettyprint prettyprinted" style=""><span class="pln">esp</span><span class="pun">-</span><span class="pln">idf</span><span class="pun">/</span><span class="pln">components</span><span class="pun">/</span><span class="pln">esptool_py</span><span class="pun">/</span><span class="pln">esptool</span><span class="pun">/</span><span class="pln">esptool</span><span class="pun">.</span><span class="pln">py    \
+        </span><span class="pun">--</span><span class="pln">chip esp32                                \
+        </span><span class="pun">--</span><span class="pln">port </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">ttyUSB0                         \
+        </span><span class="pun">--</span><span class="pln">baud </span><span class="lit">921600</span><span class="pln">                               \
+        </span><span class="pun">--</span><span class="pln">after hard_reset write_flash              \
+        </span><span class="pun">-</span><span class="pln">z                                          \
+        </span><span class="pun">--</span><span class="pln">flash_mode dio                            \
+        </span><span class="pun">--</span><span class="pln">flash_freq </span><span class="lit">40m</span><span class="pln">                            \
+        </span><span class="pun">--</span><span class="pln">flash_size detect                         \
+        </span><span class="lit">0x1000</span><span class="pln"> bootloader</span><span class="pun">.</span><span class="pln">bin                       \
+        </span><span class="lit">0x8000</span><span class="pln"> partitions_espruino</span><span class="pun">.</span><span class="pln">bin              \
+        </span><span class="lit">0x10000</span><span class="pln"> espruino_esp32</span><span class="pun">.</span><span class="pln">bin</span></code></pre>
+<p>If the <code class="prettyprint prettyprinted" style=""><span class="pln">bootloader</span><span class="pun">.</span><span class="pln">bin</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">partitions_espruino</span><span class="pun">.</span><span class="pln">bin</span></code> files are not
+included from the same source you acquired the <code class="prettyprint prettyprinted" style=""><span class="pln">espruino_esp32</span><span class="pun">.</span><span class="pln">bin</span></code> build,
+they should be available in the corresponding <code class="prettyprint prettyprinted" style=""><span class="pln">espruino_1v92</span><span class="pun">.*</span><span class="pln">_esp32</span><span class="pun">.</span><span class="pln">tgz</span></code>
+package of the <a href="http://www.espruino.com/binaries/travis/master/">Travis cutting-edge builds</a>.</p>
+<h6 id="subsequent-updates">Subsequent updates</h6>
+<p>This example is to replace existing Espruino firmware after a new release:</p>
+<pre><code class="lang-sh prettyprint prettyprinted" style=""><span class="pln">esp</span><span class="pun">-</span><span class="pln">idf</span><span class="pun">/</span><span class="pln">components</span><span class="pun">/</span><span class="pln">esptool_py</span><span class="pun">/</span><span class="pln">esptool</span><span class="pun">/</span><span class="pln">esptool</span><span class="pun">.</span><span class="pln">py    \
+        </span><span class="pun">--</span><span class="pln">chip esp32                                \
+        </span><span class="pun">--</span><span class="pln">port </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">ttyUSB0                         \
+        </span><span class="pun">--</span><span class="pln">baud </span><span class="lit">921600</span><span class="pln">                               \
+        </span><span class="pun">--</span><span class="pln">before esp32r0                            \
+        </span><span class="pun">--</span><span class="pln">after hard_reset write_flash              \
+        </span><span class="pun">-</span><span class="pln">z                                          \
+        </span><span class="pun">--</span><span class="pln">flash_mode dio                            \
+        </span><span class="pun">--</span><span class="pln">flash_freq </span><span class="lit">40m</span><span class="pln">                            \
+        </span><span class="pun">--</span><span class="pln">flash_size detect                         \
+        </span><span class="lit">0x10000</span><span class="pln"> espruino_esp32</span><span class="pun">.</span><span class="pln">bin</span></code></pre>
+<p>You should see something like the following:</p>
+<pre><code class="lang-text prettyprint prettyprinted" style=""><span class="pln">esptool</span><span class="pun">.</span><span class="pln">py v2</span><span class="pun">.</span><span class="lit">0</span><span class="pun">-</span><span class="pln">beta1
+</span><span class="typ">Connecting</span><span class="pun">........................</span><span class="pln">
+</span><span class="typ">Uploading</span><span class="pln"> stub</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Running</span><span class="pln"> stub</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Stub</span><span class="pln"> running</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Changing</span><span class="pln"> baud rate to </span><span class="lit">921600</span><span class="pln">
+</span><span class="typ">Changed</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Attaching</span><span class="pln"> SPI flash</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Configuring</span><span class="pln"> flash size</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Auto</span><span class="pun">-</span><span class="pln">detected </span><span class="typ">Flash</span><span class="pln"> size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">4MB</span><span class="pln">
+</span><span class="typ">Compressed</span><span class="pln"> </span><span class="lit">894288</span><span class="pln"> bytes to </span><span class="lit">517230.</span><span class="pun">..</span><span class="pln">
+</span><span class="typ">Wrote</span><span class="pln"> </span><span class="lit">894288</span><span class="pln"> bytes </span><span class="pun">(</span><span class="lit">517230</span><span class="pln"> compressed</span><span class="pun">)</span><span class="pln"> at </span><span class="lit">0x00010000</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> </span><span class="lit">8.4</span><span class="pln"> seconds </span><span class="pun">(</span><span class="pln">effective </span><span class="lit">848.5</span><span class="pln"> kbit</span><span class="pun">/</span><span class="pln">s</span><span class="pun">)...</span><span class="pln">
+</span><span class="typ">Hash</span><span class="pln"> of data verified</span><span class="pun">.</span><span class="pln">
+
+</span><span class="typ">Leaving</span><span class="pun">...</span><span class="pln">
+</span><span class="typ">Hard</span><span class="pln"> resetting</span><span class="pun">...</span></code></pre>
+<p>Your device is flashed.</p>
+<h3 id="espruino-web-ide">Espruino Web IDE</h3>
+<p>The <a href="http://www.espruino.com/Web+IDE">Espruino Web IDE</a> is a basic development environment
+that allows you to write your code and deploy it to the ESP32.  </p>
+<p><em>Issue</em>: There is an issue with Espruino Web IDE, sometimes it will not connect.
+Especially the first time you try.  The workaround is to use another tool to
+connect to the ESP32, like minicom or cutecom, see below.  Once connected using one of these tools, try again using Espruino Web IDE.</p>
+<p>Once you have connected once and enabled wifi on boot (see below), you will be
+able to connect to the ESP32 via telnet, using Espruino Web IDE, this tends to
+be quite reliable.</p>
+<h4 id="minicom-cutecom">minicom / CuteCom</h4>
+<p>There are other methods to connect to your ESP32, not just Espruino Web IDE.  Two
+very basic tools are <a href="https://en.wikipedia.org/wiki/Minicom">minicom</a>,
+<a href="http://cutecom.sourceforge.net/">CuteCom</a>, 
+and <a href="https://www.gnu.org/software/screen/">screen</a> which may already be installed
+on your system.
+Another cross platform terminal program with a friendly interface is <a href="http://freeware.the-meiers.org/">CoolTerm</a>.</p>
+<p><em>screen</em> is usually used for multiplexing terminals, keeping terminal sessions
+alive while you're logged out, and so forth. However, it will also function as
+a serial terminal</p>
+<pre><code class="lang-sh prettyprint prettyprinted" style=""><span class="pln">screen </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">ttyUSB0 </span><span class="lit">115200</span></code></pre>
+<p><em>Minicom</em> is a basic console based tool that allows you to connect to a serial
+device, such as the ESP32.  Below is the command to get you connected to the
+ESP32.</p>
+<pre><code class="prettyprint prettyprinted" style=""><span class="pln">minicom </span><span class="pun">--</span><span class="pln">baudrade </span><span class="lit">115200</span><span class="pln"> </span><span class="pun">--</span><span class="pln">device </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">ttyUSB0</span><a href="http://www.espruino.com/webide?code=minicom%20--baudrade%20115200%20--device%20%2Fdev%2FttyUSB0%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p><em>CuteCom</em> is also a basic GUI tool that allows you to connect to a serial device.
+Run CuteCom and connect via the correct port.</p>
+<h3 id="running-some-basic-javascript">Running some basic JavaScript</h3>
+<p>Once you have the espruino console running you will be able run JavaScript directly
+in the console.  You should see a <code class="prettyprint prettyprinted" style=""><span class="pun">&gt;</span></code> character with a flashing cursor, this
+indicates that espruino is waiting for input.  If you don't see it press the enter key.</p>
+<p>Type the following:</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Hello ESP32!'</span><span class="pun">);</span><a href="http://www.espruino.com/webide?code=console.log(%27Hello%20ESP32!%27)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>It will output the following:</p>
+<pre><code class="lang-text prettyprint prettyprinted" style=""><span class="typ">Hello</span><span class="pln"> ESP32</span><span class="pun">!</span><span class="pln">
+</span><span class="pun">=</span><span class="kwd">undefined</span></code></pre>
+<p>You should have expected the "<code class="prettyprint prettyprinted" style=""><span class="typ">Hello</span><span class="pln"> ESP32</span><span class="pun">!</span></code>" text, but probably didn't expect
+"<code class="prettyprint prettyprinted" style=""><span class="pun">=</span><span class="kwd">undefined</span></code>".  This is normal and it indicates the result of the last operation, which in this case is the return value of <code class="prettyprint prettyprinted" style=""><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span></code>, which is always <code class="prettyprint prettyprinted" style=""><span class="kwd">undefined</span></code>.</p>
+<h3 id="connecting-to-wifi">Connecting to Wifi</h3>
+<p>If your board with the ESP32 has an antenna connection point, connect your Wifi antenna.  Many
+boards have an in-built antenna so this may not be required.</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> ssid </span><span class="pun">=</span><span class="pln"> </span><span class="str">'YOUR_SSID'</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> password </span><span class="pun">=</span><span class="pln"> </span><span class="str">'YOUR_SSID_PASSWORD'</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> wifi </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'Wifi'</span><span class="pun">);</span><span class="pln">
+wifi</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="pln">ssid</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">password</span><span class="pun">:</span><span class="pln"> password</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Connected to Wifi.  IP address is:'</span><span class="pun">,</span><span class="pln"> wifi</span><span class="pun">.</span><span class="pln">getIP</span><span class="pun">().</span><span class="pln">ip</span><span class="pun">);</span><span class="pln">
+    wifi</span><span class="pun">.</span><span class="pln">save</span><span class="pun">();</span><span class="pln"> </span><span class="com">// Next reboot will auto-connect</span><span class="pln">
+</span><span class="pun">});</span><a href="http://www.espruino.com/webide?code=var%20ssid%20%3D%20%27YOUR_SSID%27%3B%0Avar%20password%20%3D%20%27YOUR_SSID_PASSWORD%27%3B%0A%0Avar%20wifi%20%3D%20require(%27Wifi%27)%3B%0Awifi.connect(ssid%2C%20%7Bpassword%3A%20password%7D%2C%20function()%20%7B%0A%20%20%20%20console.log(%27Connected%20to%20Wifi.%20%20IP%20address%20is%3A%27%2C%20wifi.getIP().ip)%3B%0A%20%20%20%20wifi.save()%3B%20%2F%2F%20Next%20reboot%20will%20auto-connect%0A%7D)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>Additional commands:</p>
+<ul>
+<li><code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span></code>: This will save the Wifi details such that the ESP32 will reconnect to the wifi
+after a reboot.</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">scan</span><span class="pun">((</span><span class="pln">ap</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">ap</span><span class="pun">)</span><span class="pln"> </span><span class="pun">})</span></code>: List all the access points seen by the ESP32.</li>
+<li><code class="prettyprint prettyprinted" style=""><span class="pln">wifi</span><span class="pun">.</span><span class="pln">setHostname</span><span class="pun">(</span><span class="str">'myESP32'</span><span class="pun">)</span></code>: set the hostname. (Not currently implemented.)</li>
+</ul>
+<p><strong>Note:</strong> The ESP32's Wifi implementation supports both a simple access point mode and a station mode.
+The station mode is highly recommended for normal operation as the access point mode is very
+limited. It supports 4 stations max and offers no routing between stations.</p>
+<p><span style="color: red"><strong>Note:</strong> You need a good 3.3v regulator with a solid power supply.
+If you get errors as soon as Wifi starts it's probably because the power is insufficient.
+A 500-600mA regulator with at least 22uF capacitor is recommended.</span></p>
+<h3 id="creating-a-basic-web-server">Creating a basic web-server</h3>
+<p>Once you have wifi going you will be able to create a simple web server.</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> ssid </span><span class="pun">=</span><span class="pln"> </span><span class="str">'YOUR_SSID'</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> password </span><span class="pun">=</span><span class="pln"> </span><span class="str">'YOUR_SSID_PASSWORD'</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> port </span><span class="pun">=</span><span class="pln"> </span><span class="lit">80</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> processRequest </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  res</span><span class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span class="pun">);</span><span class="pln">
+  res</span><span class="pun">.</span><span class="kwd">end</span><span class="pun">(</span><span class="str">'Hello World'</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+wifi</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="pln">ssid</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">password</span><span class="pun">:</span><span class="pln"> password</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">var</span><span class="pln"> http </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'http'</span><span class="pun">);</span><span class="pln">
+    http</span><span class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">processRequest</span><span class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span class="pln">port</span><span class="pun">);</span><span class="pln">
+
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">`Web server running at http://${wifi.getIP().ip}:${port}`</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">});</span><a href="http://www.espruino.com/webide?code=var%20ssid%20%3D%20%27YOUR_SSID%27%3B%0Avar%20password%20%3D%20%27YOUR_SSID_PASSWORD%27%3B%0Avar%20port%20%3D%2080%3B%0A%0Afunction%20processRequest%20(req%2C%20res)%20%7B%0A%20%20res.writeHead(200)%3B%0A%20%20res.end(%27Hello%20World%27)%3B%0A%7D%0A%0Awifi.connect(ssid%2C%20%7Bpassword%3A%20password%7D%2C%20function()%20%7B%0A%0A%20%20%20%20var%20http%20%3D%20require(%27http%27)%3B%0A%20%20%20%20http.createServer(processRequest).listen(port)%3B%0A%0A%20%20%20%20console.log(%60Web%20server%20running%20at%20http%3A%2F%2F%24%7Bwifi.getIP().ip%7D%3A%24%7Bport%7D%60)%0A%7D)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>This will output something like <code class="prettyprint prettyprinted" style=""><span class="typ">Web</span><span class="pln"> server running at http</span><span class="pun">:</span><span class="com">//10.42.0.119</span></code> and you will be able to browse to that address.</p>
+<h3 id="bluetooth">Bluetooth</h3>
+<p>Not yet implemented</p>
+<h2 id="gpio-pins">GPIO Pins</h2>
+<p>The ESP32 has 40 GPIO pins.  These are available in Espruino as the variables D0 to D40, each of
+these variables are instances of the Pin class.</p>
+  <style>
+   .boardcontainer {
+     position: relative;
+    }
+   .boardcontainer * { /* bootstrap screws up all the sizing by GLOBALLY changing the way sizes are calculated! */
+     -webkit-box-sizing:content-box; -moz-box-sizing: content-box;  box-sizing: content-box;
+   }
+   .board {
+     position: absolute;
+     background-size: 100% auto; # width and height, can be %, px or whatever.
+   }
+   .pin { padding: 1px; height: 20px;  }
+   .pinname {
+      background-color: #FFF;
+      border:1px solid black;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-weight: bold;
+    }
+   .pinfunction {
+     border:1px solid black;
+     border-radius:3px;
+     padding-left: 2px;
+     padding-right: 2px;
+   }
+   .pinfunctionlink {
+      color : black;
+      text-decoration: none;
+   }
+   .pintooltip {
+      background-color: #FFD;
+      border:1px solid black;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-weight: bold;
+      position: absolute;
+      z-index: 100;
+   }
+   .SPI { background-color: #8F8; }
+   .ADC { background-color: #88F; }
+   .DAC { background-color: #0CC; }
+   .PWM { background-color: #8FF; }
+   .USART { background-color: #FF8; }
+   .CAN { background-color: #8CC; }
+   .I2C { background-color: #F88; }
+   .DEVICE { background-color: #F8F; }
+   .NOT_5V { background-color: #FDD; }
+   .NOTE { background-color: #F80; }
+
+#top { white-space: nowrap; }
+#top2 { white-space: nowrap; }
+#bottom { white-space: nowrap; }
+#bottom2 { white-space: nowrap; }
+#left { text-align:right; }
+#right2 { text-align:right; }
+.toppin {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  display: inline-block;
+  width: 20px;
+}
+.top2pin {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  display: inline-block;
+  width: 20px;
+}
+.bottompin {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  display: inline-block;
+  width: 20px;
+}
+.bottom2pin {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  display: inline-block;
+  width: 20px;
+}
+
+
+.line {
+  height:2px;background-color:red;position:absolute;
+}
+
+.line:hover {
+  background-color:#FF00FF;
+}
+
+
+  </style><script src="./Espruino on ESP32_files/jquery-1.11.0.min.js.download"></script>
+
+  <script type="text/javascript">
+    function showTT(ttid) {
+      var e = document.getElementById(ttid);
+      e.style.display = 'block';
+    }
+    function hideTT(ttid) {
+      var e = document.getElementById(ttid);
+      e.style.display = 'none';
+    }
+    function drawLine(x1, y1, x2, y2, hover) {
+      if (x2 < x1) {
+        var temp = x1;
+        x1 = x2;
+        x2 = temp;
+        temp = y1;
+        y1 = y2;
+        y2 = temp;
+      }
+      var line = $('<div class="line" alt="'+hover+'"></div>').appendTo($("body"));
+      var length = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+      line.css('width', length + "px");
+      var angle = Math.atan((y2 - y1) / (x2 - x1));
+      line.css('top', y1 + 0.5 * length * Math.sin(angle) + "px");
+      line.css('left', x1 - 0.5 * length * (1 - Math.cos(angle)) + "px");
+      line.css('-moz-transform', "rotate(" + angle + "rad)");
+      line.css('-webkit-transform', "rotate(" + angle + "rad)");
+      line.css('-o-transform', "rotate(" + angle + "rad)");
+     }
+  </script>
+
+
+  <p>Hover the mouse over a pin function for more information. Clicking in a function will tell you how to use it in Espruino.</p>
+  <ul>
+    <li><span class="pinfunction DEVICE">Purple</span> boxes show pins that are used for other functionality on the board. You should avoid using these unless you know that the marked device is not used.</li>
+    <li><span class="pinfunction NOTE">!</span> boxes contain extra information about the pin. Hover your mouse over them to see it.</li>
+    <li><span class="pinfunction NOT_5V">3.3v</span> boxes mark pins that are not 5v tolerant (they only take inputs from 0 - 3.3v, not 0 - 5v).</li>
+    <li><span class="pinfunction">GND</span> is ground (0v).</li>
+    <li><span class="pinfunction ADC">ADC</span> is an <a href="http://www.espruino.com/ADC">Analog to Digital Converter</a> (for reading analog voltages)</li>
+    <li><span class="pinfunction DAC">DAC</span> is a <a href="http://www.espruino.com/DAC">Digital to Analog Converter</a> (for creating analog voltages). This is not available on all boards.</li>
+    <li><span class="pinfunction USART">USART</span> is a 2 wire peripheral for <a href="http://www.espruino.com/USART">Serial Data</a>.</li>
+  </ul>
+  <style>
+  #board #top { position: absolute; }
+  #board .toppin { white-space: nowrap; }
+  #board #right { position: absolute; }
+  #board .rightpin { white-space: nowrap; }
+  #board #bottom { position: absolute; }
+  #board .bottompin { white-space: nowrap; }
+
+#board {
+  width:  600px;
+  height: 435px;
+  left: 50px;
+  top: 170px;
+  background-image: url(img/ESP32.jpg);
+}
+#boardcontainer {
+  height: 700px;
+}
+#board #right {
+  top: 80px;
+  left: 600px;
+}
+#board #top {
+  bottom: 440px;
+  left: 155px;
+}
+#board #bottom  {
+  top: 435px;
+  left: 155px;
+}
+#board .rightpin {
+  height: 28px;
+}
+#board .toppin, #board .bottompin {
+  width: 24px;
+}
+
+  </style>
+  <div id="boardcontainer" class="boardcontainer">
+  <div id="board" class="board">
+   <div id="top">
+    <div class="toppin pin pinGND">
+     <span class="pinname">GND</span>
+
+    </div>
+    <div class="toppin pin pinD23">
+     <span class="pinname">D23</span>
+
+    </div>
+    <div class="toppin pin pinD22">
+     <span class="pinname">D22</span>
+
+    </div>
+    <div class="toppin pin pinD1">
+     <span class="pinname">D1</span>
+
+    </div>
+    <div class="toppin pin pinD3">
+     <span class="pinname">D3</span>
+
+    </div>
+    <div class="toppin pin pinD21">
+     <span class="pinname">D21</span>
+
+    </div>
+    <div class="toppin pin pinD20">
+     <span class="pinname">D20</span>
+
+    </div>
+    <div class="toppin pin pinD19">
+     <span class="pinname">D19</span>
+
+    </div>
+    <div class="toppin pin pinD18">
+     <span class="pinname">D18</span>
+
+    </div>
+    <div class="toppin pin pinD5">
+     <span class="pinname">D5</span>
+
+    </div>
+    <div class="toppin pin pinD17">
+     <span class="pinname">D17</span>
+
+<!-- USART2_TX -->
+     <a href="http://www.espruino.com/USART" class="pinfunctionlink">
+     <span class="pinfunction USART" title="[D17] USART2_TX" onmouseover="showTT(&#39;D17_USART2_TX&#39;)" onmouseout="hideTT(&#39;D17_USART2_TX&#39;)">USART2 TX</span>
+     </a>
+     <span class="pintooltip" id="D17_USART2_TX" style="display: none;">[D17] USART2_TX</span>
+    </div>
+    <div class="toppin pin pinD16">
+     <span class="pinname">D16</span>
+
+<!-- USART2_RX -->
+     <a href="http://www.espruino.com/USART" class="pinfunctionlink">
+     <span class="pinfunction USART" title="[D16] USART2_RX" onmouseover="showTT(&#39;D16_USART2_RX&#39;)" onmouseout="hideTT(&#39;D16_USART2_RX&#39;)">USART2 RX</span>
+     </a>
+     <span class="pintooltip" id="D16_USART2_RX" style="display:none;">[D16] USART2_RX</span>
+    </div>
+    <div class="toppin pin pinD4">
+     <span class="pinname">D4</span>
+
+<!-- ADC2_IN0 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D4] ADC2_IN0" onmouseover="showTT(&#39;D4_ADC2_IN0&#39;)" onmouseout="hideTT(&#39;D4_ADC2_IN0&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D4_ADC2_IN0" style="display:none;">[D4] ADC2_IN0</span>
+    </div>
+    <div class="toppin pin pinD0">
+     <span class="pinname">D0</span>
+
+<!-- ADC2_IN1 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D0] ADC2_IN1" onmouseover="showTT(&#39;D0_ADC2_IN1&#39;)" onmouseout="hideTT(&#39;D0_ADC2_IN1&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D0_ADC2_IN1" style="display:none;">[D0] ADC2_IN1</span>
+    </div>
+   </div>
+   <div id="right">
+    <div class="rightpin pin pinD2">
+     <span class="pinname">D2</span>
+
+<!-- ADC2_IN2 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D2] ADC2_IN2" onmouseover="showTT(&#39;D2_ADC2_IN2&#39;)" onmouseout="hideTT(&#39;D2_ADC2_IN2&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D2_ADC2_IN2" style="display:none;">[D2] ADC2_IN2</span>
+    </div>
+    <div class="rightpin pin pinD15">
+     <span class="pinname">D15</span>
+
+<!-- ADC2_IN3 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D15] ADC2_IN3" onmouseover="showTT(&#39;D15_ADC2_IN3&#39;)" onmouseout="hideTT(&#39;D15_ADC2_IN3&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D15_ADC2_IN3" style="display:none;">[D15] ADC2_IN3</span>
+    </div>
+    <div class="rightpin pin pinD8">
+     <span class="pinname">D8</span>
+
+    </div>
+    <div class="rightpin pin pinD7">
+     <span class="pinname">D7</span>
+
+    </div>
+    <div class="rightpin pin pinD6">
+     <span class="pinname">D6</span>
+
+    </div>
+    <div class="rightpin pin pinD11">
+     <span class="pinname">D11</span>
+
+    </div>
+    <div class="rightpin pin pinD10">
+     <span class="pinname">D10</span>
+
+    </div>
+    <div class="rightpin pin pinD9">
+     <span class="pinname">D9</span>
+
+    </div>
+    <div class="rightpin pin pinD13">
+     <span class="pinname">D13</span>
+
+<!-- ADC2_IN4 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D13] ADC2_IN4" onmouseover="showTT(&#39;D13_ADC2_IN4&#39;)" onmouseout="hideTT(&#39;D13_ADC2_IN4&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D13_ADC2_IN4" style="display:none;">[D13] ADC2_IN4</span>
+    </div>
+    <div class="rightpin pin pinGND">
+     <span class="pinname">GND</span>
+
+    </div>
+   </div>
+   <div id="bottom">
+    <div class="bottompin pin pinGND">
+     <span class="pinname">GND</span>
+
+    </div>
+    <div class="bottompin pin pin3V3">
+     <span class="pinname">3V3</span>
+
+    </div>
+    <div class="bottompin pin pinEN">
+     <span class="pinname">EN</span>
+
+    </div>
+    <div class="bottompin pin pinD36">
+     <span class="pinname">D36</span>
+
+<!-- ADC1_IN0 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D36] ADC1_IN0" onmouseover="showTT(&#39;D36_ADC1_IN0&#39;)" onmouseout="hideTT(&#39;D36_ADC1_IN0&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D36_ADC1_IN0" style="display:none;">[D36] ADC1_IN0</span>
+    </div>
+    <div class="bottompin pin pinD39">
+     <span class="pinname">D39</span>
+
+<!-- ADC1_IN3 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D39] ADC1_IN3" onmouseover="showTT(&#39;D39_ADC1_IN3&#39;)" onmouseout="hideTT(&#39;D39_ADC1_IN3&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D39_ADC1_IN3" style="display:none;">[D39] ADC1_IN3</span>
+    </div>
+    <div class="bottompin pin pinD34">
+     <span class="pinname">D34</span>
+
+<!-- ADC1_IN6 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D34] ADC1_IN6" onmouseover="showTT(&#39;D34_ADC1_IN6&#39;)" onmouseout="hideTT(&#39;D34_ADC1_IN6&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D34_ADC1_IN6" style="display: none;">[D34] ADC1_IN6</span>
+    </div>
+    <div class="bottompin pin pinD35">
+     <span class="pinname">D35</span>
+
+<!-- ADC1_IN7 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D35] ADC1_IN7" onmouseover="showTT(&#39;D35_ADC1_IN7&#39;)" onmouseout="hideTT(&#39;D35_ADC1_IN7&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D35_ADC1_IN7" style="display: none;">[D35] ADC1_IN7</span>
+    </div>
+    <div class="bottompin pin pinD32">
+     <span class="pinname">D32</span>
+
+<!-- ADC1_IN4 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D32] ADC1_IN4" onmouseover="showTT(&#39;D32_ADC1_IN4&#39;)" onmouseout="hideTT(&#39;D32_ADC1_IN4&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D32_ADC1_IN4" style="display: none;">[D32] ADC1_IN4</span>
+    </div>
+    <div class="bottompin pin pinD33">
+     <span class="pinname">D33</span>
+
+<!-- ADC1_IN5 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D33] ADC1_IN5" onmouseover="showTT(&#39;D33_ADC1_IN5&#39;)" onmouseout="hideTT(&#39;D33_ADC1_IN5&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D33_ADC1_IN5" style="display: none;">[D33] ADC1_IN5</span>
+    </div>
+    <div class="bottompin pin pinD25">
+     <span class="pinname">D25</span>
+
+<!-- DAC_OUT1 -->
+     <a href="http://www.espruino.com/DAC" class="pinfunctionlink">
+     <span class="pinfunction DAC" title="[D25] DAC_OUT1" onmouseover="showTT(&#39;D25_DAC_OUT1&#39;)" onmouseout="hideTT(&#39;D25_DAC_OUT1&#39;)">DAC</span>
+     </a>
+     <span class="pintooltip" id="D25_DAC_OUT1" style="display: none;">[D25] DAC_OUT1</span>
+    </div>
+    <div class="bottompin pin pinD26">
+     <span class="pinname">D26</span>
+
+<!-- DAC_OUT2 -->
+     <a href="http://www.espruino.com/DAC" class="pinfunctionlink">
+     <span class="pinfunction DAC" title="[D26] DAC_OUT2" onmouseover="showTT(&#39;D26_DAC_OUT2&#39;)" onmouseout="hideTT(&#39;D26_DAC_OUT2&#39;)">DAC</span>
+     </a>
+     <span class="pintooltip" id="D26_DAC_OUT2" style="display: none;">[D26] DAC_OUT2</span>
+    </div>
+    <div class="bottompin pin pinD27">
+     <span class="pinname">D27</span>
+
+<!-- ADC2_IN7 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D27] ADC2_IN7" onmouseover="showTT(&#39;D27_ADC2_IN7&#39;)" onmouseout="hideTT(&#39;D27_ADC2_IN7&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D27_ADC2_IN7" style="display: none;">[D27] ADC2_IN7</span>
+    </div>
+    <div class="bottompin pin pinD14">
+     <span class="pinname">D14</span>
+
+<!-- ADC2_IN6 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D14] ADC2_IN6" onmouseover="showTT(&#39;D14_ADC2_IN6&#39;)" onmouseout="hideTT(&#39;D14_ADC2_IN6&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D14_ADC2_IN6" style="display: none;">[D14] ADC2_IN6</span>
+    </div>
+    <div class="bottompin pin pinD12">
+     <span class="pinname">D12</span>
+
+<!-- ADC2_IN5 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D12] ADC2_IN5" onmouseover="showTT(&#39;D12_ADC2_IN5&#39;)" onmouseout="hideTT(&#39;D12_ADC2_IN5&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D12_ADC2_IN5" style="display: none;">[D12] ADC2_IN5</span>
+    </div>
+   </div>
+  </div>
+  </div>
+  <div id="otherpins">
+   <h2>Pins not on connectors</h2>
+    <div class="otherpinspin pin pinD24">
+     <span class="pinname">D24</span>
+
+    </div>
+    <div class="otherpinspin pin pinD28">
+     <span class="pinname">D28</span>
+
+    </div>
+    <div class="otherpinspin pin pinD29">
+     <span class="pinname">D29</span>
+
+    </div>
+    <div class="otherpinspin pin pinD30">
+     <span class="pinname">D30</span>
+
+    </div>
+    <div class="otherpinspin pin pinD31">
+     <span class="pinname">D31</span>
+
+    </div>
+    <div class="otherpinspin pin pinD37">
+     <span class="pinname">D37</span>
+
+<!-- ADC1_IN1 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D37] ADC1_IN1" onmouseover="showTT(&#39;D37_ADC1_IN1&#39;)" onmouseout="hideTT(&#39;D37_ADC1_IN1&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D37_ADC1_IN1" style="display:none;">[D37] ADC1_IN1</span>
+    </div>
+    <div class="otherpinspin pin pinD38">
+     <span class="pinname">D38</span>
+
+<!-- ADC1_IN2 -->
+     <a href="http://www.espruino.com/ADC" class="pinfunctionlink">
+     <span class="pinfunction ADC" title="[D38] ADC1_IN2" onmouseover="showTT(&#39;D38_ADC1_IN2&#39;)" onmouseout="hideTT(&#39;D38_ADC1_IN2&#39;)">ADC</span>
+     </a>
+     <span class="pintooltip" id="D38_ADC1_IN2" style="display:none;">[D38] ADC1_IN2</span>
+    </div>
+  </div>
+  <p></p>
+
+<p>For example, connect GPIO25 and D14 with a wire.  Then run the following code.</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="pln">D14</span><span class="pun">.</span><span class="pln">mode</span><span class="pun">(</span><span class="str">'output'</span><span class="pun">);</span><span class="pln">
+D25</span><span class="pun">.</span><span class="pln">mode</span><span class="pun">(</span><span class="str">'input'</span><span class="pun">);</span><span class="pln">
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Before: '</span><span class="pun">,</span><span class="pln"> D25</span><span class="pun">.</span><span class="pln">read</span><span class="pun">());</span><span class="pln">
+D14</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">();</span><span class="pln">                  </span><span class="com">// Set the D14 pin to output a HIGH value.</span><span class="pln">
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'After: '</span><span class="pun">,</span><span class="pln"> D25</span><span class="pun">.</span><span class="pln">read</span><span class="pun">());</span><a href="http://www.espruino.com/webide?code=D14.mode(%27output%27)%3B%0AD25.mode(%27input%27)%3B%0Aconsole.log(%27Before%3A%20%27%2C%20D25.read())%3B%0AD14.set()%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20Set%20the%20D14%20pin%20to%20output%20a%20HIGH%20value.%0Aconsole.log(%27After%3A%20%27%2C%20D25.read())%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>This will output:</p>
+<pre><code class="lang-text prettyprint prettyprinted" style=""><span class="typ">Before</span><span class="pun">:</span><span class="pln">  </span><span class="kwd">false</span><span class="pln">
+</span><span class="typ">After</span><span class="pun">:</span><span class="pln">  </span><span class="kwd">true</span></code></pre>
+<p><strong>Note:</strong> The ESP32 GPIO pins support
+<a href="https://en.wikipedia.org/wiki/Push%E2%80%93pull_output#Totem-pole_push.E2.80.93pull_output_stages">totem-pole</a> and
+<a href="https://en.wikipedia.org/wiki/Open_collector">open-drain outputs</a>,
+and they support a weak internal
+<a href="https://en.wikipedia.org/wiki/Pull-up_resistor">pull-up resistor</a> (in the 20KOhm-50KOhm range).
+The Espruino D0 through D32 pins map directory to GPIO0 through GPIO32 on
+the ESP32. Remember that GPIO6 through GPIO11 are used for the external
+flash chip and are therefore not available. Also, GPIO0 and GPIO2
+must be pulled-up at boot and GPIO15 must be pulled-down at boot.</p>
+<p>The ESP32 ADC function is available on any pin (D0-D15) but really uses a separate pin on the ESP32
+(this should be changed to an A0 pin).</p>
+<h3 id="i2c-example">I2C Example</h3>
+<p>Below is an example of the <a href="https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller">HD44780 LCD controller</a>.
+It uses the <a href="https://www.espruino.com/Reference#I2C">I2C class</a>.</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="pln">I2C1</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">({</span><span class="pln"> </span><span class="str">'scl'</span><span class="pun">:</span><span class="pln"> D17</span><span class="pun">,</span><span class="pln">
+             </span><span class="str">'sda'</span><span class="pun">:</span><span class="pln"> D16</span><span class="pun">,</span><span class="pln">
+             bitrate</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100000</span><span class="pln"> </span><span class="pun">});</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> lcd </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'HD44780'</span><span class="pun">).</span><span class="pln">connectI2C</span><span class="pun">(</span><span class="pln">I2C1</span><span class="pun">);</span><span class="pln">
+lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'Hello ESP32!!'</span><span class="pun">);</span><a href="http://www.espruino.com/webide?code=I2C1.setup(%7B%20%27scl%27%3A%20D17%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%27sda%27%3A%20D16%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20bitrate%3A%20100000%20%7D)%3B%0Avar%20lcd%20%3D%20require(%27HD44780%27).connectI2C(I2C1)%3B%0Alcd.print(%27Hello%20ESP32!!%27)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<h3 id="spi-example">SPI Example</h3>
+<p>Below is an example for the <a href="https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf">PCD8544</a>
+LCD controller (48 × 84 pixels matrix LCD).  It uses the <a href="https://www.espruino.com/Reference#SPI">SPI class</a>.</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="com">/*
+Display     ESP-32   DEF Colour
+LED         3V3      N/A
+SCLCK       GPIO4    Green    IO05
+DN&lt;MOSI&gt;    GPIO16   Yellow
+D/C         GPIO17   Orange
+SCE         GPIO5    Red
+RST         GPIO18   Brown
+GND         GND      Grey
+VCC         3V3      Blue
+BackLight   GND      Purple
+*/</span><span class="pln">
+
+SPI2</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">({</span><span class="pln"> sck</span><span class="pun">:</span><span class="pln">D5</span><span class="pun">,</span><span class="pln"> mosi</span><span class="pun">:</span><span class="pln">D23 </span><span class="pun">});</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> g </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">'PCD8544'</span><span class="pun">).</span><span class="pln">connect</span><span class="pun">(</span><span class="pln">SPI1</span><span class="pun">,</span><span class="pln">
+    D17 </span><span class="com">/* RS / DC */</span><span class="pun">,</span><span class="pln">
+    D18 </span><span class="com">/* CS / CE */</span><span class="pun">,</span><span class="pln">
+    D16 </span><span class="com">/*RST*/</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  g</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span><span class="pln">
+  g</span><span class="pun">.</span><span class="pln">setRotation</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> </span><span class="com">//Flip display 180</span><span class="pln">
+  g</span><span class="pun">.</span><span class="pln">drawString</span><span class="pun">(</span><span class="str">'Hi Esp32'</span><span class="pun">,</span><span class="lit">0</span><span class="pun">,</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+  g</span><span class="pun">.</span><span class="pln">drawLine</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">84</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span><span class="pln">
+  g</span><span class="pun">.</span><span class="pln">flip</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">});</span><a href="http://www.espruino.com/webide?code=%2F*%0ADisplay%20%20%20%20%20ESP-32%20%20%20DEF%20Colour%0ALED%20%20%20%20%20%20%20%20%203V3%20%20%20%20%20%20N%2FA%0ASCLCK%20%20%20%20%20%20%20GPIO4%20%20%20%20Green%20%20%20%20IO05%0ADN%3CMOSI%3E%20%20%20%20GPIO16%20%20%20Yellow%0AD%2FC%20%20%20%20%20%20%20%20%20GPIO17%20%20%20Orange%0ASCE%20%20%20%20%20%20%20%20%20GPIO5%20%20%20%20Red%0ARST%20%20%20%20%20%20%20%20%20GPIO18%20%20%20Brown%0AGND%20%20%20%20%20%20%20%20%20GND%20%20%20%20%20%20Grey%0AVCC%20%20%20%20%20%20%20%20%203V3%20%20%20%20%20%20Blue%0ABackLight%20%20%20GND%20%20%20%20%20%20Purple%0A*%2F%0A%0ASPI2.setup(%7B%20sck%3AD5%2C%20mosi%3AD23%20%7D)%3B%0A%0Avar%20g%20%3D%20require(%27PCD8544%27).connect(SPI1%2C%0A%20%20%20%20D17%20%2F*%20RS%20%2F%20DC%20*%2F%2C%0A%20%20%20%20D18%20%2F*%20CS%20%2F%20CE%20*%2F%2C%0A%20%20%20%20D16%20%2F*RST*%2F%2C%20function()%20%7B%0A%20%20g.clear()%3B%0A%20%20g.setRotation(2)%3B%20%2F%2FFlip%20display%20180%0A%20%20g.drawString(%27Hi%20Esp32%27%2C0%2C0)%3B%0A%20%20g.drawLine(0%2C%2010%2C%2084%2C%2010)%3B%0A%20%20g.flip()%3B%0A%7D)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<h3 id="serial-uart-example">Serial / UART Example</h3>
+<p>There are two serial ports (UARTs) available for use on the ESP32 with Espruino.  These are accessed
+throught the <a href="https://www.espruino.com/Reference#Serial">Serial</a> class.  The <code class="prettyprint prettyprinted" style=""><span class="typ">Serial1</span></code> and <code class="prettyprint prettyprinted" style=""><span class="typ">Serial2</span></code>
+functions are available for use.  Note that if you are accessing the ESP32 via serial terminal
+<code class="prettyprint prettyprinted" style=""><span class="typ">Serial1</span></code> may already be used, hence it's not available (use Telnet if this is an issue).</p>
+<p>For the example below, connect a wire from the <code class="prettyprint prettyprinted" style=""><span class="pln">GPIO04</span></code> (transmit pin, TX) and <code class="prettyprint prettyprinted" style=""><span class="pln">GPIO15</span></code> (receive pin,
+RX).</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="typ">Serial2</span><span class="pun">.</span><span class="pln">setup</span><span class="pun">(</span><span class="lit">9600</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> tx</span><span class="pun">:</span><span class="pln"> D4</span><span class="pun">,</span><span class="pln"> rx</span><span class="pun">:</span><span class="pln"> D15 </span><span class="pun">});</span><span class="pln">
+</span><span class="typ">Serial2</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'data'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Serial2: '</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+</span><span class="typ">Serial2</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'Hello UART'</span><span class="pun">);</span><a href="http://www.espruino.com/webide?code=Serial2.setup(9600%2C%20%7B%20tx%3A%20D4%2C%20rx%3A%20D15%20%7D)%3B%0ASerial2.on(%27data%27%2C%20function(data)%20%7B%0A%20%20%20%20console.log(%27Serial2%3A%20%27%2C%20data)%3B%0A%7D)%3B%0ASerial2.print(%27Hello%20UART%27)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>This will output:</p>
+<pre><code class="lang-text prettyprint prettyprinted" style=""><span class="typ">Serial2</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Hello</span><span class="pln"> UART</span></code></pre>
+<p><em>Note:</em> The ESP32 has two UARTS. UART0 (<code class="prettyprint prettyprinted" style=""><span class="typ">Serial1</span></code>) uses <code class="prettyprint prettyprinted" style=""><span class="pln">GPIO10</span></code> for TX and <code class="prettyprint prettyprinted" style=""><span class="pln">GPIO32</span></code> for RX and is used by
+the Espruino JavaScript console. It can be used for other things once the Espruino console
+is moved to another device. For instance calling <code class="prettyprint prettyprinted" style=""><span class="typ">LoopbackA</span><span class="pun">.</span><span class="pln">setConsole</span><span class="pun">()</span></code> will move the console
+to 'loopback' (where is can be accessed using <code class="prettyprint prettyprinted" style=""><span class="typ">LoopbackB</span></code>), and will free up <code class="prettyprint prettyprinted" style=""><span class="typ">Serial1</span></code> for
+use like any normal Espruino Serial port.</p>
+<h3 id="digital-read-write-example">Digital Read / Write Example</h3>
+<p>PWM on most pins. True DAC on GPIO25 and GPIO26.</p>
+<p>First version of PWM uses ledc driver. Usually, this matches needs for frequency much more than sigmadelta. Mapping of PWM channel to timer is done in a special way.
+There are 5 channel usable, as long as 5Khz are ok for frequency. Channels are internally controlled. If you try to use more than 5, you will get a message.
+Left 3 channels are designed to support a frequency of your choice, as long as it is between 1hz and 78 Khz. If you try to use a 4th channel with a frequency, other than 5Khz you will a meesage.</p>
+<h2 id="problem">Problem</h2>
+<p>Handling of PWM with those 5/3 method is not always easy to follow. As long as we don't have a better solution, its better to have this than nothing.
+Limitation of frequency is boring, but as long as we use it for analog output, it should be acceptable.
+Please have in mind, PWM via analog always need a lowpass filter, usually a simple RC.</p>
+<h3 id="analog-read-write-example">Analog Read / Write Example</h3>
+<p>There are two ADC channels but only ADC-1 is support at the moment. The ADC-1 channel is accessible through <code class="prettyprint prettyprinted" style=""><span class="pln">IO35</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">IO36</span></code>(<code class="prettyprint prettyprinted" style=""><span class="pln">VP_SENSOR</span></code>).
+ADC PINs shouldn't not be connected to a voltage higher than VCC - if a higher input voltage is needed, a resistor should be added between the input and the ADC and then the real voltage could be calculated by including the resistor's voltage drop in the equation.</p>
+<p>usage example: reading analog voltage from IO35</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> reading </span><span class="pun">=</span><span class="pln"> analogRead</span><span class="pun">(</span><span class="pln">D35</span><span class="pun">);</span><span class="pln">
+</span><span class="com">// reading is a float between 0 and 1</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> estimatedInputVoltage </span><span class="pun">=</span><span class="pln"> reading </span><span class="pun">*</span><span class="pln"> </span><span class="lit">3.3</span><span class="pun">;</span><a href="http://www.espruino.com/webide?code=var%20reading%20%3D%20analogRead(D35)%3B%0A%2F%2F%20reading%20is%20a%20float%20between%200%20and%201%0Avar%20estimatedInputVoltage%20%3D%20reading%20*%203.3%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>more information on espruino <a href="https://www.espruino.com/ADC">ADC docs</a> and <a href="https://www.espruino.com/Reference#l__global_analogRead">analogRead method</a></p>
+<h3 id="unique-identifier-for-the-esp32">Unique Identifier for the ESP32</h3>
+<p>The ESP32 does not have a serial number. It does have two mac addresses "burned-in", which one can
+use for identification purposes. <code class="prettyprint prettyprinted" style=""><span class="pln">getSerial</span><span class="pun">()</span></code> returns the MAC address of the STA interface.</p>
+<h3 id="system-time">System time</h3>
+<p>From a JavaScript perspective, we can get and set the system time using
+the JS functions called <code class="prettyprint prettyprinted" style=""><span class="pln">getTime</span><span class="pun">()</span></code> and <code class="prettyprint prettyprinted" style=""><span class="pln">setTime</span><span class="pun">()</span></code>.  These get and take
+a time in seconds (float).</p>
+<h3 id="digitalpulse-implementation">digitalPulse implementation</h3>
+<p>There are 8 channel available. Each one with is connected to a pin. Timimg goes down to micro secs.
+Implemented with the esp-idf RMT driver.</p>
+<h3 id="setwatch-implementation">setWatch implementation</h3>
+<hr>
+<h3 id="saving-code-to-flash">Saving code to flash</h3>
+<p>Currently 64KB of flash are reserved to save JS code to flash using the
+save() function. This area is also used for <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">saveBootCode</span><span class="pun">()</span></code></p>
+<p>If the save() area contains something that crashes Espruino or otherwise
+doesn't let you reset the system you can disable whatever is saved by
+flashing blank.bin to 0x100000.</p>
+<h3 id="flash-map-and-access">Flash map and access</h3>
+<p>Note: if you are looking for a free flash area to use, call <code class="prettyprint prettyprinted" style=""><span class="kwd">require</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Flash"</span><span class="pun">).</span><span class="pln">getFree</span><span class="pun">()</span></code>,
+which will return a list of available areas (see docs).</p>
+<p>Current ESP32 modules are 4Mb.</p>
+<p>The result of all this is the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Start</th>
+<th style="text-align:right">Length</th>
+<th style="text-align:left">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0x000000</td>
+<td style="text-align:right">4KB</td>
+<td style="text-align:left">Secure Boot</td>
+</tr>
+<tr>
+<td style="text-align:right">0x008000</td>
+<td style="text-align:right">4KB</td>
+<td style="text-align:left">Bootloader</td>
+</tr>
+<tr>
+<td style="text-align:right">0x009000</td>
+<td style="text-align:right">16KB</td>
+<td style="text-align:left">nvs - esp-idf non-volatile storage area</td>
+</tr>
+<tr>
+<td style="text-align:right">0x00d000</td>
+<td style="text-align:right">8KB</td>
+<td style="text-align:left">otadata - esp-idf keeps track on which the current firmware to boot</td>
+</tr>
+<tr>
+<td style="text-align:right">0x010000</td>
+<td style="text-align:right">960KB</td>
+<td style="text-align:left">factory - the initial espruino firmware.</td>
+</tr>
+<tr>
+<td style="text-align:right">0x100000</td>
+<td style="text-align:right">64KB</td>
+<td style="text-align:left">js_code - the saved espruino interpreter and <code class="prettyprint prettyprinted" style=""><span class="pln">E</span><span class="pun">.</span><span class="pln">setBootCode</span><span class="pun">()</span></code></td>
+</tr>
+<tr>
+<td style="text-align:right">0x200000</td>
+<td style="text-align:right">1024KB</td>
+<td style="text-align:left">ota_0 - area for ota updates (not yet implemented)</td>
+</tr>
+<tr>
+<td style="text-align:right">0x300000</td>
+<td style="text-align:right">1024KB</td>
+<td style="text-align:left">1Mb Flash Fat Filesystem</td>
+</tr>
+</tbody>
+</table>
+<p>This is defined in partitions_espruino.csv in the EspruinoBuildTools repository</p>
+<p>The last 1Mb has been defined as a flash FAT filesystem. It needs to be intialised for first use - this does it in a safe way that won't delete existing files:</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  fs</span><span class="pun">.</span><span class="pln">readdirSync</span><span class="pun">();</span><span class="pln">
+ </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">//'Uncaught Error: Unable to mount media : NO_FILESYSTEM'</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Formatting FS - only need to do once'</span><span class="pun">);</span><span class="pln">
+  E</span><span class="pun">.</span><span class="pln">flashFatFS</span><span class="pun">({</span><span class="pln"> format</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span><a href="http://www.espruino.com/webide?code=try%20%7B%0A%20%20fs.readdirSync()%3B%0A%20%7D%20catch%20(e)%20%7B%20%2F%2F%27Uncaught%20Error%3A%20Unable%20to%20mount%20media%20%3A%20NO_FILESYSTEM%27%0A%20%20console.log(%27Formatting%20FS%20-%20only%20need%20to%20do%20once%27)%3B%0A%20%20E.flashFatFS(%7B%20format%3A%20true%20%7D)%3B%0A%7D%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<p>you can then use the filesystem with fs or File objects:</p>
+<pre><code class="sh_javascript prettyprint prettyprinted" style=""><span class="pln">fs</span><span class="pun">.</span><span class="pln">writeFileSync</span><span class="pun">(</span><span class="str">'hello world.txt'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'This is the way the world ends\nHello World\nnot with a bang but a whimper.\n'</span><span class="pun">);</span><span class="pln">
+fs</span><span class="pun">.</span><span class="pln">readFileSync</span><span class="pun">(</span><span class="str">'hello world.txt'</span><span class="pun">);</span><a href="http://www.espruino.com/webide?code=fs.writeFileSync(%27hello%20world.txt%27%2C%20%27This%20is%20the%20way%20the%20world%20ends%5CnHello%20World%5Cnnot%20with%20a%20bang%20but%20a%20whimper.%5Cn%27)%3B%0Afs.readFileSync(%27hello%20world.txt%27)%3B%0A" class="codelink" title="Send to Web IDE"></a></code></pre>
+<hr>
+<h3 id="further-reading">Further reading</h3>
+<p><strong>TODO: Add additional resources not already covered</strong>.</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<h4 id="guru-meditation-error">Guru Meditation Error</h4>
+<p><strong>Symptom:</strong></p>
+<pre><code class="prettyprint prettyprinted" style=""><span class="typ">Guru</span><span class="pln"> </span><span class="typ">Meditation</span><span class="pln"> </span><span class="typ">Error</span><span class="pln"> of type </span><span class="typ">InstrFetchProhibited</span><span class="pln"> occurred on core  </span><span class="lit">0.</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> was unhandled</span><span class="pun">.</span><span class="pln">
+</span><span class="typ">Register</span><span class="pln"> </span><span class="kwd">dump</span><span class="pun">:</span><span class="pln">
+PC      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xffffffff</span><span class="pln">  PS      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00060c30</span><span class="pln">  A0      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x8008e036</span><span class="pln">  A1      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x3ffd54b0</span><span class="pln">  
+A2      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x3f400148</span><span class="pln">  A3      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x3ffb6952</span><span class="pln">  A4      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000008</span><span class="pln">  A5      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xffffffe8</span><span class="pln">  
+A6      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xffffffa4</span><span class="pln">  A7      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x3ffb1fa0</span><span class="pln">  A8      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xffffffff</span><span class="pln">  A9      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x3ffd54c0</span><span class="pln">  
+A10     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><span class="pln">  A11     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000002</span><span class="pln">  A12     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x5fff0007</span><span class="pln">  A13     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><span class="pln">  
+A14     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><span class="pln">  A15     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><span class="pln">  SAR     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><span class="pln">  EXCCAUSE</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000014</span><span class="pln">  
+EXCVADDR</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xfffffffc</span><span class="pln">  LBEG    </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x4000c2e0</span><span class="pln">  LEND    </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x4000c2f6</span><span class="pln">  LCOUNT  </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00000000</span><a href="http://www.espruino.com/webide?code=Guru%20Meditation%20Error%20of%20type%20InstrFetchProhibited%20occurred%20on%20core%20%200.%20Exception%20was%20unhandled.%0ARegister%20dump%3A%0APC%20%20%20%20%20%20%3A%200xffffffff%20%20PS%20%20%20%20%20%20%3A%200x00060c30%20%20A0%20%20%20%20%20%20%3A%200x8008e036%20%20A1%20%20%20%20%20%20%3A%200x3ffd54b0%20%20%0AA2%20%20%20%20%20%20%3A%200x3f400148%20%20A3%20%20%20%20%20%20%3A%200x3ffb6952%20%20A4%20%20%20%20%20%20%3A%200x00000008%20%20A5%20%20%20%20%20%20%3A%200xffffffe8%20%20%0AA6%20%20%20%20%20%20%3A%200xffffffa4%20%20A7%20%20%20%20%20%20%3A%200x3ffb1fa0%20%20A8%20%20%20%20%20%20%3A%200xffffffff%20%20A9%20%20%20%20%20%20%3A%200x3ffd54c0%20%20%0AA10%20%20%20%20%20%3A%200x00000000%20%20A11%20%20%20%20%20%3A%200x00000002%20%20A12%20%20%20%20%20%3A%200x5fff0007%20%20A13%20%20%20%20%20%3A%200x00000000%20%20%0AA14%20%20%20%20%20%3A%200x00000000%20%20A15%20%20%20%20%20%3A%200x00000000%20%20SAR%20%20%20%20%20%3A%200x00000000%20%20EXCCAUSE%3A%200x00000014%20%20%0AEXCVADDR%3A%200xfffffffc%20%20LBEG%20%20%20%20%3A%200x4000c2e0%20%20LEND%20%20%20%20%3A%200x4000c2f6%20%20LCOUNT%20%20%3A%200x00000000%0A" class="codelink" title="Send to Web IDE"></a></code></pre><p><strong>Cause:</strong> if it happens whenever wifi tries to connect then the chip is not getting enough power.
+<strong>Solution:</strong> use a designated power source (not the USB serial adapter), add capacitors to the power line</p>
+</div><p style="text-align:right;font-size:75%;">This page is auto-generated from <a href="https://github.com/espruino/EspruinoDocs/blob/master/boards/ESP32.md">GitHub</a>. If you see any mistakes or have suggestions, please <a href="https://github.com/espruino/EspruinoDocs/issues/new?title=boards/ESP32.md">let us know</a>.</p></div>
+      <div class="row">
+        <div id="sidebar" class="col-md-3 hidden-sm hidden-xs"></div>
+        <div id="maincolumn" class="col-md-9"></div>
+      </div>
+
+      <hr>
+      <!-- FOOTER -->
+      <footer>
+        <p>
+  			© 2017 <strong>Pur3 Ltd</strong>
+  			(<a href="http://www.espruino.com/ESP32?print">Printable Version</a>)
+        <a href="http://www.espruino.com/edit.php?page=ESP32" class="edit" style="float:right;">π</a>
+  			</p>
+      </footer>
+
+    </div><!-- /.container -->
+  </div><!-- /#mainscroller -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script>
+    // if there's a contents element, add it to the page
+    var contents = document.getElementById("contents");
+    if (contents) {
+      document.getElementById("sidebar").appendChild(contents);
+      document.getElementById("maincolumn").appendChild(document.getElementById("maincontent"));
+    }
+  </script>
+  <script src="./Espruino on ESP32_files/jquery-1.11.1.min.js.download"></script>
+  <script src="./Espruino on ESP32_files/bootstrap.min.js.download"></script>
+  <script type="text/javascript" src="./Espruino on ESP32_files/search.js.download"></script>
+
+
+</body></html>

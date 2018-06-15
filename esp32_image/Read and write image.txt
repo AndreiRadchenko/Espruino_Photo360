@@ -1,0 +1,6 @@
+Read and write images from flash
+Read the flash file system (previously formatted) and copy as local disc image
+esptool.py --chip esp32 --port COM3 --baud 921600 read_flash 0x300000 0x100000 fatfs.img
+
+Write a disc image
+esptool.py --chip esp32 --port COM3 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0x300000 fatfs.img
